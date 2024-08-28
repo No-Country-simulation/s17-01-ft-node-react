@@ -14,6 +14,7 @@ export const databaseProviders = [
         database: 'verceldb',
         entities: [User],
         synchronize: true,
+        ssl: { rejectUnauthorized: false },
       });
 
       return dataSource.initialize();
