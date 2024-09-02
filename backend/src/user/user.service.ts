@@ -24,8 +24,12 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOneByEmail(email: string): Promise<User | undefined> {
+    return this.userRepository.findOne({ where: { email } });
+  }
+
+  async findOneById(id: number): Promise<User | undefined> {
+    return this.userRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
