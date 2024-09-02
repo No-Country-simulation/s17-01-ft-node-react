@@ -1,0 +1,83 @@
+.button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--color-neutral);
+    border-radius: 8px;
+    display: grid;
+    place-content: center;
+    padding: 10px 20px;
+    transition: all .2s;
+}
+/* MAIN & ICON_MAIN */
+.main, .mainIcon {
+    background: var(--color-primary);
+}
+.main:hover, .mainIcon:hover {
+    background: var(--primary-5);    
+}
+.main:active, .mainIcon:active {
+    background: var(--primary-6);    
+}
+/* SECONDARY & ICON_SECONDARY */
+.secondary, .secondaryIcon {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+.secondary:hover, .secondaryIcon:hover {
+    border: 1px solid var(--primary-5);
+    color: var(--primary-5);
+}
+.secondary:active, .secondaryIcon:active {
+    border: 1px solid var(--primary-6);
+    color: var(--primary-6);
+}
+/* TERTIARY & ICON_TERTIARY */
+.tertiary, .tertiaryIcon {
+    
+}
+.tertiary:hover, .tertiaryIcon:hover {
+    background: var(--primary-1);
+}
+.tertiary:active, .tertiaryIcon:active {
+    background: var(--primary-2)
+}
+/* TEXT & ICON_TEXT */
+.text {
+    color: var(--color-primary);
+    width: fit-content;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0;
+}
+.text::after {
+    content: attr(data);
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: translateY(2px);
+    transition: all .2s;
+}
+.text:hover {
+    color: var(--primary-5);
+}
+.text:hover::after {
+    background: var(--primary-5);
+    transform: translateY(0px);
+}
+.text:active {
+    color: var(--primary-6);
+}
+.text:active::after {
+    background: var(--primary-6);
+}
+.icon {
+    width: 47px;
+    height: 47px;
+}
+.disabled {
+
+}
