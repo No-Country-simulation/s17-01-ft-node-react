@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 54px 74px;
+    border: 1px solid var(--neutral-5);
+    border-radius: 16px;
+    background: var(--color-neutral);
+    color: var(--neutral-3);
+    font-weight: normal;
+}
+.title {
+    font-weight: 600;
+    font-size: 48px;
+}
+.subtitle {
+    font-weight: normal;
+    font-size: 18px;
+    color: var(--neutral-3);
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.login {
+    text-align: center;
+}
+.login_link {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--neutral-1);
+}
+.terms {
+    text-align: center;
+}
+.terms_link {
+    color: var(--neutral-1);
+}

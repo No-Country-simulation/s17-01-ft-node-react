@@ -1,3 +1,4 @@
 import { useMouse } from "./useMouse";
+import { useSignUpForm } from "./useSignUp";
 
-export {useMouse}
+export {useMouse, useSignUpForm}
