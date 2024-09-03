@@ -11,6 +11,9 @@
     place-content: center;
     padding: 10px 20px;
     transition: all .2s;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
 }
 /* MAIN & ICON_MAIN */
 .main, .mainIcon {
@@ -40,10 +43,10 @@
     
 }
 .tertiary:hover, .tertiaryIcon:hover {
-    background: var(--primary-1);
+    /* background: var(--primary-1); */
 }
 .tertiary:active, .tertiaryIcon:active {
-    background: var(--primary-2)
+    /* background: var(--primary-2) */
 }
 /* TEXT & ICON_TEXT */
 .text {
@@ -80,4 +83,30 @@
 }
 .disabled {
 
+}
+/* RIPPLE EFFECT */
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 300px;
+        height: 300px;
+    }
+}
+.ripple {
+    position: absolute;
+    background: var(--primary-1);
+    /* left: 50%;
+    top: 50%; */
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    animation: appear .75s forwards;
+    z-index: -1;
 }

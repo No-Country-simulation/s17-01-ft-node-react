@@ -1,51 +1,64 @@
 "use client";
 import styles from "./styles.module.css"
 import { Button, Inputs } from "@/ui-atoms";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Send } from "lucide-react";
 
 export default function Page() {
     const [disabled, setDisabled] = useState<boolean>(false);
-    const [testForm, setTestForm] = useState<{value:string, missing: boolean}>({value: "", missing: false});
-    const handleChange = (value:string) => {
-        setTestForm({
-            value,
-            missing: false
-        })
-    };
-    const handleInvalid = (e:React.FormEvent<HTMLFormElement>):void => {
-        e.preventDefault();
+    const [testForm, setTestForm] = useState<{
+        name: {
+            value: string,
+            missing: boolean
+        },
+        email: {
+            value: string,
+            missing: boolean
+        }
+    }>({name: {value: "", missing: false}, email: {value: "", missing: false}});
+    const handleChange = (fieldName: "name" | "email", value:string) => {
         setTestForm({
             ...testForm,
-            missing: true
+            [fieldName]: {
+                value,
+                missing: false
+            }
         })
     };
+    // const handleInvalid = (e:React.FormEvent<HTMLFormElement>):void => {
+    //     e.preventDefault();
+    //     setTestForm({
+    //         ...testForm,
+    //         missing: true
+    //     })
+    // };
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>):void => {
         e.preventDefault();
     }
     return (
         <section>
-            <form onInvalid={handleInvalid} onSubmit={handleSubmit} className={styles.buttons_container}>
+            <form onSubmit={handleSubmit} className={styles.buttons_container}>
                 <Inputs
+                    label="E-Mail"
                     name="name"
                     type="text"
-                    missing={testForm.missing}
+                    missing={testForm.name.missing}
                     disabled={disabled}
                     required={true}
                     placeholder="ej. Thiago Salaberry"
-                    value={testForm.value}
-                    onChange={(value:string) => handleChange(value)}
+                    value={testForm.name.value}
+                    onChange={(value:string) => handleChange("name", value)}
                 />
                 <Inputs
                     label="Nombre"
                     name="name"
                     type="text"
-                    missing={testForm.missing}
+                    missing={testForm.email.missing}
                     disabled={disabled}
                     required={true}
                     placeholder="ej. Thiago Salaberry"
-                    value={testForm.value}
-                    onChange={(value:string) => handleChange(value)}
+                    value={testForm.email.value}
+                    onChange={(value:string) => handleChange("email", value)}
                 />
             </form>
             <div className={styles.buttons_container}>

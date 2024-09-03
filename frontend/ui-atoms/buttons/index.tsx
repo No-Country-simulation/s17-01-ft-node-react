@@ -2,22 +2,24 @@ import styles from "./styles.module.css"
 import { ButtonProps } from "@/lib/types"
 import { outfit } from "@/lib/fonts"
 import { medium } from "@/utils/fonts/fonts"
+import { useRef } from "react";
 
 export function Button(props:ButtonProps) {
-    const isIcon = props.variant == "mainIcon" || props.variant == "secondaryIcon" || props.variant == "tertiaryIcon"; 
-    const handleClick = () => {
+    const isIcon = props.variant == "mainIcon" || props.variant == "secondaryIcon" || props.variant == "tertiaryIcon";
+    const rippleButtonRef = useRef<HTMLButtonElement>(null);
+    const handleClick = (e:React.MouseEvent) => {
+        if(props.variant !== "text") {
+            const ripple = document.createElement("span");
+            ripple.className = styles.ripple;
+            ripple.style.left = `${e.clientX - rippleButtonRef.current?.offsetLeft!}px`;
+            ripple.style.top = `${e.clientY - rippleButtonRef.current?.offsetTop!}px`;
+            rippleButtonRef.current?.appendChild(ripple);
+            setTimeout(() => {
+                rippleButtonRef.current?.removeChild(ripple);
+            }, 750)
+        }
         props.onClick();
     };
-    // const handleTouchStart = (e:React.TouchEvent) => {
-    //     e.preventDefault();
-    //     console.log("Click: ", e.type)
-    // }
-    // const handleTouchEnd = () => {
-    //     console.log("Termina el tap")
-    // }
-    // const handleEventType = (e:React.MouseEvent) => {
-    //     console.log(e.type)
-    // }
     return (
         <button
             className={`
@@ -30,8 +32,8 @@ export function Button(props:ButtonProps) {
             type={props.type == "submit" ? "submit" : "button"}
             id={props.id || ""}
             onClick={handleClick}
-            // onTouchEnd={handleTouchEnd}
             disabled={props.disabled}
+            ref={rippleButtonRef}
         >{props.children}</button>
     )
 }

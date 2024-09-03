@@ -9,9 +9,6 @@ export function Inputs(props:InputProps) {
         const inputValue:string = e.target.value;
         props.onChange(inputValue);
     }
-    useEffect(()=>{
-        console.log({focusing})
-    }, [focusing])
     return (
         <div className={styles.input_container}>
             {props.label && (
