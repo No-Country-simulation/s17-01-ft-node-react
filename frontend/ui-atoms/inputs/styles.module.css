@@ -1,3 +1,9 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
 .input_container {
     display: flex;
     flex-direction: column;
@@ -26,6 +32,7 @@
     position: relative;
     transition: all .2s;
     background: none;
+    font-size: 16px;
 }
 .input:hover {
     border-bottom: 2px solid var(--color-primary);
@@ -43,6 +50,29 @@
 .input.disabled {
     
 }
-.input.missing {
+.input.missing, .input.error {
     border-bottom: 2px solid var(--color-error);
+}
+.icon_container, .clear_button {
+    position: absolute;
+    display: grid;
+    place-content: center;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+}
+.clear_button {
+    color: var(--neutral-5);
+    cursor: pointer;
+}
+.error_message {
+    color: var(--color-error);
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    position: absolute;
+    bottom: -22px;
 }
