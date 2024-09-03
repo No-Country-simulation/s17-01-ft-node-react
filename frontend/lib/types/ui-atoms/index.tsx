@@ -16,5 +16,6 @@ export type InputProps = {
     id?: string;
     missing?: boolean;
     disabled?: boolean;
+    errorMessage?: string;
     onChange: (value:string) => void;
 }

@@ -6,10 +6,10 @@
     font-size: 18px;
     font-weight: normal;
     color: var(--color-neutral);
-    border-radius: 8px;
+    border-radius: 10px;
     display: grid;
     place-content: center;
-    padding: 10px 20px;
+    padding: 16px 40px;
     transition: all .2s;
     position: relative;
     overflow: hidden;
@@ -40,7 +40,7 @@
 }
 /* TERTIARY & ICON_TERTIARY */
 .tertiary, .tertiaryIcon {
-    
+    color: var(--color-primary);
 }
 .tertiary:hover, .tertiaryIcon:hover {
     /* background: var(--primary-1); */
@@ -80,9 +80,12 @@
 .icon {
     width: 47px;
     height: 47px;
+    padding: 0;
 }
 .disabled {
-
+    opacity: .5;
+    cursor: inherit;
+    user-select: none;
 }
 /* RIPPLE EFFECT */
 @keyframes appear {

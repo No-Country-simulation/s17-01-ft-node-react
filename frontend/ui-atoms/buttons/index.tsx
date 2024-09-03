@@ -8,6 +8,7 @@ export function Button(props:ButtonProps) {
     const isIcon = props.variant == "mainIcon" || props.variant == "secondaryIcon" || props.variant == "tertiaryIcon";
     const rippleButtonRef = useRef<HTMLButtonElement>(null);
     const handleClick = (e:React.MouseEvent) => {
+        if(props.disabled) return;
         if(props.variant !== "text") {
             const ripple = document.createElement("span");
             ripple.className = styles.ripple;
