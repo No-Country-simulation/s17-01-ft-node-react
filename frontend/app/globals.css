@@ -1,18 +1,55 @@
 :root{
   /*FONTS*/
  --font-regular:var(--fontRegular);
- --font-medium: var(--fontMedium);
+ --font-medium: var(--fontMedium); 
  --font-semiBold:var(--fontSemiBold);
  --font-bold:var(--fontBold);
  
  /*SIZE*/
 
-/*TITLE*/
+/*LEADING TITLE BOLD*/
 
+--leadingTitleDesktop-font-size: 52px;
+--leadingTitleMobile-font-size: 34px;
 
-/*HEADING*/
+/*LARGE TITLE*/
+--largeTitleDesktop-font-size:48px;
+--largeTitleMobile-font-size:28px;
+
+/*HEADINGS 01*/
+--heading01Desktop-font-size:44px;
+--heading01Mobile-font-size:22px;
+
+/*HEADINGS 02*/
+--heading02Desktop-font-size:38px;
+--heading02Mobile-font-size:20px;
+
+/*HEADINGS 03*/
+--heading03Desktop-font-size:31px;
+--heading03Mobile-font-size:18px;
+
+/*HEADLINE*/
+--headlineDesktop-font-size:28px;
+--headlineMobile-font-size:16px;
 
 /*PARAGRAPH*/
+--bodyDesktop-font-size:28px;
+--bodyMobile-font-size:16px;
+
+--calloutDesktop-font-size:26px;
+--calloutMobile-font-size:16px;
+
+--subheadDesktop-font-size:24px;
+--subheadMobile-font-size:15px;
+
+--footnoteDesktop-font-size:22px;
+--footnoteMobile-font-size:13px;
+
+--captionDesktop-font-size:17px;
+--captionMobile-font-size:12px;
+
+--overlineDesktop-font-size:14px;
+--overlineMobile-font-size:10px;
 
 
  /*Colors*/
