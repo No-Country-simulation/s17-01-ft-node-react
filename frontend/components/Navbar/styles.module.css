@@ -1,42 +1,63 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    height: 80px;
-    border-radius: 1rem;
-    border: none;
-    background-color: var(--neutral-6);
-  }
-  
-  .navbar_links {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 24px;
-  }
-  
-  .navbar_links_link, .navbar_links_link_active {
-    color: var(--neutral-2); /* Color blanco */
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: var(--fontRegular);
-  }
-  
-.navbar_links_link_active {
-    color: var(--primary-4); /* Color activo */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+  background-color: var(--neutral-700);
+  color: var(--primary-6);
+  border-radius: 10px;
 }
 
-.navbar_link_button {
-    background-color: var(--primary-4);
-    color: var(--neutral-6);
-    padding: 16px 40px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: var(--fontRegular);
-    cursor: pointer;
-    text-decoration: none;
+.logo img {
+  max-height: 100%;
+  /* Otros estilos para el logo */
+}
 
+.menu {
+  display: flex;
+  height: inherit;
+  align-items: center;
+  position: relative;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  padding: 0 15px;
+  margin: 0 5px; 
+}
+
+.navLink:hover {
+  color: var(--primary-400);
+}
+
+.codePlus {
+  color: var(--primary-5);
+  font-weight: bold;
+}
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--primary-400);
+  transition: all 0.3s ease;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.loginButton {
+  color: var(--neutral-700);
+  font-weight: bold;
+  text-decoration: none;
+  padding: 16px 40px;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
