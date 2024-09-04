@@ -1,0 +1,42 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 80px;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--neutral-6);
+  }
+  
+  .navbar_links {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 24px;
+  }
+  
+  .navbar_links_link, .navbar_links_link_active {
+    color: var(--neutral-2); /* Color blanco */
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: var(--fontRegular);
+  }
+  
+.navbar_links_link_active {
+    color: var(--primary-4); /* Color activo */
+}
+
+.navbar_link_button {
+    background-color: var(--primary-4);
+    color: var(--neutral-6);
+    padding: 16px 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: var(--fontRegular);
+    cursor: pointer;
+    text-decoration: none;
+
+}
