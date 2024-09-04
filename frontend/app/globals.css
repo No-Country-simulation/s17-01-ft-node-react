@@ -58,7 +58,7 @@
  --primary-1: #CBF9F5;
  --primary-2: #96F3EA;
  --primary-3: #62EDE0;
- --primary-4: #1AE5D2;
+ --primary-400: #1AE5D2;
  --primary-5: #13AC9E;
  --primary-6: #0E7B71;
  --primary-7: #0B625A;
@@ -74,17 +74,67 @@
 
  --color-neutral: #121212;
  --neutral-1: #FFFFFF;
- --neutral-2: #EAEAEA;
+ --neutral-300: #EAEAEA;
  --neutral-3: #CFCFD5;
  --neutral-4: #9F9FAB;
  --neutral-5: #626270;
- --neutral-6: #36363E;
+ --neutral-700: #36363E;
 
  --color-success: #30DB5B;
 
  --color-error: #FC0019;
+
+ 
+ --left-side: 0%;
+ --right-side: 0%;
+
+}
+*{
+  box-sizing: border-box;
+}
+html{
+  background-color: #1C1C20;
 }
 
 body{
   font-family: var(--font-regular);
+}
+
+/* CONTAINER  */
+.container {
+  width: 100%;
+  max-width: 1200px; 
+  margin: 1rem auto 0;
+  padding: 0 1rem; 
+}
+
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
 }
