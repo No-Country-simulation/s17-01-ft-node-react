@@ -15,9 +15,9 @@ export class Component {
   @Column()
   name: string;
 
-  @ManyToOne(() => User, (user) => user.components)
-  uploader: User;
+  // @ManyToOne(() => User, (user) => user.components)
+  // uploader: User;
 
-  @ManyToMany(() => User, (user) => user.myComponents)
-  buyers: User[];
+  // @ManyToMany(() => User, (user) => user.myComponents)
+  // buyers: User[];
 }

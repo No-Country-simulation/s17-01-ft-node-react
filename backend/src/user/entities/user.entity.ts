@@ -34,20 +34,20 @@ export class User {
   @JoinColumn({ name: 'id_PaymentDetails' })
   paymentDetails?: PaymentDetails;
 
-  @OneToOne(() => Subscription, { nullable: true })
-  @JoinColumn({ name: 'id_Subscription' })
-  subscription?: Subscription;
+  // @OneToOne(() => Subscription, { nullable: true })
+  // @JoinColumn({ name: 'id_Subscription' })
+  // subscription?: Subscription;
 
-  @OneToMany(() => Component, (component) => component.uploader)
-  components: Component[];
+  // @OneToMany(() => Component, (component) => component.uploader)
+  // components: Component[];
 
-  @ManyToMany(() => Component, (component) => component.buyers)
-  @JoinTable({ name: 'user_components' })
-  myComponents: Component[];
+  // @ManyToMany(() => Component, (component) => component.buyers)
+  // @JoinTable({ name: 'user_components' })
+  // myComponents: Component[];
 
   @Column({ type: 'float', nullable: true })
   rating?: number;
 
-  @OneToMany(() => Payment, (payment) => payment.user)
-  payments: Payment[];
+  // @OneToMany(() => Payment, (payment) => payment.user)
+  // payments: Payment[];
 }
