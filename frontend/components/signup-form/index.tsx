@@ -16,6 +16,8 @@ export function SignupForm() {
     const handleInvalid = (e:React.FormEvent<HTMLFormElement>):void => {
         e.preventDefault();
         const input = e.target as HTMLInputElement;
+        if(input.name == "email") setError({...error, email: "Ingresá un formato E-Mail válido"})
+        if(form.password !== form.confirmPassword) setError({...error, confirmPassword: "Las contraseñas no coinciden"})
         setMissing({
             ...missing,
             [input.name]: true
@@ -24,6 +26,7 @@ export function SignupForm() {
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>):void => {
         e.preventDefault();
         setDisabled(true);
+        setError({username: "", email: "", password: "", confirmPassword: ""})
         setTimeout(() => {
             setDisabled(false)
         }, 2000);
