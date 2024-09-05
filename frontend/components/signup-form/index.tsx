@@ -4,6 +4,8 @@ import { useSignUpForm } from "@/hooks";
 import { Button, Inputs } from "@/ui-atoms";
 import Link from "next/link";
 import { useState } from "react";
+import MainLogo from "@/assets/logos/MainLogo";
+
 export function SignupForm() {
     const {form, setForm, missing, setMissing, error, setError} = useSignUpForm();
     const [disabled, setDisabled] = useState<boolean>(false);
@@ -33,6 +35,7 @@ export function SignupForm() {
     }
     return (
         <div className={styles.container}>
+            <MainLogo/>
             <h1 className={styles.title}>¡Bienvenido!</h1>
             <h4 className={styles.subtitle}>Nos alegra conocerte.</h4>
             <form className={styles.form} onInvalid={handleInvalid} onSubmit={handleSubmit}>
