@@ -36,7 +36,7 @@ export function Navbar() {
         <span className={styles.underline} ref={underlineRef}></span>
       </div>
       <div className={styles.actions}>
-        <Link href="/login" className={styles.loginButton}>
+        <Link href="/Auth/login" className={styles.loginButton}>
           Ingresar
         </Link>
         <CircleHelpIcon color="#FFFFFF" width={24} height={24} />
