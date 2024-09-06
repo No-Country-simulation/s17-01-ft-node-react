@@ -1,0 +1,22 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    color: aqua;
+    height: 526px;
+    width: 900px;
+    border-radius: 16px;
+    border: 1px solid var(--neutral-5);
+    padding: 37px 74px;
+}
