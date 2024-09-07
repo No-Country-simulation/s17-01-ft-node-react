@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+    border: 1px solid var(--neutral-5);
+    border-radius: 16px;
+    background: var(--color-neutral);
+    color: var(--neutral-3);
+    font-weight: normal;
+}
+.title {
+    font-weight: bold;
+    font-size: 48px;
+    margin: 0;
+}
+.subtitle {
+    font-weight: normal;
+    font-size: 18px;
+    color: var(--neutral-3);
+    margin: 0;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.login {
+    text-align: center;
+    margin: 0;
+}
+.login_link {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--neutral-1);
+}
+.terms {
+    text-align: center;
+    margin: 0;
+}
+.terms_link {
+    color: var(--neutral-1);
+}
