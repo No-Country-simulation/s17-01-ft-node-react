@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Component } from 'src/components/entities/component.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
 export class Category {
@@ -7,4 +8,7 @@ export class Category {
 
   @Column({ length: 50 })
   name: string;
+
+  @ManyToMany(() => Component, (component) => component.categories)
+  components: Component[];
 }

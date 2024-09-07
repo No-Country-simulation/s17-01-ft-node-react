@@ -4,6 +4,7 @@ import {
   OneToOne,
   JoinColumn,
   Column,
+  ManyToOne,
 } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { Plan } from 'src/plans/entities/plan.entity';
@@ -26,7 +27,7 @@ export class Subscription {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToOne(() => Plan)
+  @ManyToOne(() => Plan)
   @JoinColumn({ name: 'plan_id' })
   plan: Plan;
 }
