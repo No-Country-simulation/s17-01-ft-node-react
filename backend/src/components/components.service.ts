@@ -1,9 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateComponentDto } from './dto/create-component.dto';
 import { UpdateComponentDto } from './dto/update-component.dto';
+import { Component } from './entities/component.entity';
 
 @Injectable()
 export class ComponentsService {
+  constructor(
+    @InjectRepository(Component)
+    private componentRepository: Repository<Component>,
+  ) {}
+
   create(createComponentDto: CreateComponentDto) {
     return 'This action adds a new component';
   }

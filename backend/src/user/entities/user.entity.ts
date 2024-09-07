@@ -1,5 +1,6 @@
 import {
   Entity,
+  Index,
   Column,
   PrimaryGeneratedColumn,
   ManyToMany,
@@ -18,9 +19,11 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Index()
   @Column({ unique: true })
   username: string;
 
+  @Index()
   @Column({ unique: true })
   email: string;
 
@@ -30,23 +33,31 @@ export class User {
   @Column({ default: 'USER' })
   role: string;
 
+  @Column({ type: 'float', nullable: true })
+  rating?: number;
+
+  @Column({ type: 'boolean', default: true })
+  status: boolean;
+
+  @Column({ nullable: true })
+  avatar: string;
+
   @OneToOne(() => PaymentDetails, { nullable: true })
-  @JoinColumn({ name: 'id_PaymentDetails' })
   paymentDetails?: PaymentDetails;
 
   @OneToOne(() => Subscription, { nullable: true })
-  @JoinColumn({ name: 'id_Subscription' })
   subscription?: Subscription;
 
   @OneToMany(() => Component, (component) => component.uploader)
-  components: Component[];
-
-  @ManyToMany(() => Component, (component) => component.buyers)
-  @JoinTable({ name: 'user_components' })
   myComponents: Component[];
 
-  @Column({ type: 'float', nullable: true })
-  rating?: number;
+  @ManyToMany(() => Component, (component) => component.buyers)
+  @JoinTable({
+    name: 'user_components',
+    joinColumn: { name: 'user_id' },
+    inverseJoinColumn: { name: 'component_id' },
+  })
+  components: Component[];
 
   @OneToMany(() => Payment, (payment) => payment.user)
   payments: Payment[];

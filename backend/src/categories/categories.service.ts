@@ -3,11 +3,12 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Repository } from 'typeorm';
 import { Category } from './entities/category.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CategoriesService {
   constructor(
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
   ) {}
 

@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   ManyToMany,
+  JoinColumn,
 } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 
@@ -15,9 +16,10 @@ export class Component {
   @Column()
   name: string;
 
-  @ManyToOne(() => User, (user) => user.components)
+  @ManyToOne(() => User, (user) => user.myComponents)
+  @JoinColumn({ name: 'uploader_id', referencedColumnName: 'id' })
   uploader: User;
 
-  @ManyToMany(() => User, (user) => user.myComponents)
+  @ManyToMany(() => User, (user) => user.components)
   buyers: User[];
 }
