@@ -48,6 +48,7 @@
 .actions {
   display: flex;
   align-items: center;
+  height: inherit;
   gap: 20px;
 }
 
@@ -60,4 +61,47 @@
   border: none;
   border-radius: 10px;
   transition: all 0.3s ease;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: inherit;
+  cursor: pointer;
+}
+
+.profilePic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.dropdownIcon {
+  transition: transform 0.3s;
+}
+
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile:hover .dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+.dropdownMenu a {
+  display: block;
+  padding: 8px 0;
+  color: #333;
+  text-decoration: none;
 }
