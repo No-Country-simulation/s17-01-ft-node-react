@@ -1,34 +1,40 @@
-import { Controller, UseGuards, Post, Request } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import {
+  Controller,
+  UseGuards,
+  Post,
+  Request,
+  UsePipes,
+  Body,
+} from '@nestjs/common';
+
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { Roles } from './decorators/roles.decorator';
 
+import { AuthService } from './auth.service';
+
+//DTO
+import { LoginUserDto } from 'src/user/dto/login-user.dto';
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req) {
+  @UseGuards(LocalAuthGuard)
+  async login(@Body() loginUserDto: LoginUserDto, @Request() req: any) {
     return this.authService.login(req.user);
   }
 
   @Post('register-request')
-  async sendConfirmationEmail(@Request() req) {
+  @UsePipes()
+  async registerRequest(@Request() req) {
     return this.authService.login(req.user);
   }
 
   @Post('register')
   async register(@Request() req) {
-    return this.authService.login(req.user);
-  }
-
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN', 'USER')
-  @Post('register')
-  async borrartodopapa(@Request() req) {
     return this.authService.login(req.user);
   }
 }

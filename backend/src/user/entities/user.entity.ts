@@ -42,7 +42,9 @@ export class User {
   @Column({ nullable: true })
   avatar: string;
 
-  @OneToOne(() => PaymentDetails, { nullable: true })
+  @OneToOne(() => PaymentDetails, (paymentDetails) => paymentDetails.user, {
+    nullable: true,
+  })
   paymentDetails?: PaymentDetails;
 
   @OneToOne(() => Subscription, { nullable: true })

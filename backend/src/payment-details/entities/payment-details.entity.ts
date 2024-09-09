@@ -24,7 +24,7 @@ export class PaymentDetails {
   @Column()
   cuil: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, (user) => user.id)
   @JoinColumn({ name: 'user_id' })
   user: User;
 }
