@@ -1,60 +1,88 @@
-/* styles.module.css */
-
 .footer {
   background-color: var(--neutral-700);
-  padding: 20px;
-  text-align: center;
   background: linear-gradient(
     to bottom,
     #1c1c20 0%,        
     #121212 65%,     
     #2c2c33 100%      
   );
-  
+  padding: 1.25rem; 
 }
 
 .footer__content {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.0625rem solid var(--neutral-400); 
+  padding-bottom: 1.25rem; 
 }
 
-.footer__team,
-.footer__contact {
-  flex: 1;
+.footer__article {
+  display: flex;
+  gap: 3.125rem; 
 }
 
 .footer__heading {
-  font-size: 1.5rem;
+  font-size: 1.5rem; 
   color: var(--color-white-text);
-  margin-bottom: 10px;
+  font-weight: var(--font-semiBold);
+  margin-bottom: 0.625rem; 
 }
 
-.footer__contact-form {
+.footer__link {
+  display: block;
+  color: var(--color-white-text);
+  text-decoration: none;
+  text-align: left;
+  margin-bottom: 0.3125rem; 
+}
+
+.footer__contact {
+  width: 25rem; 
+}
+
+.footer__form {
   display: flex;
-  gap: 10px;
-  justify-content: center;
+  align-items: center;
+  gap: 0.625rem; 
+}
+
+.footer__button {
+  background-color: var(--color-primary);
+  color: var(--color-neutral);
+  border: none;
+  padding: 1rem 2.5rem; 
+  border-radius: 0.3125rem; 
+  cursor: pointer;
+}
+
+.footer__input {
+  border: none;
+  width: 17.375rem; 
+  padding: 1rem; 
+  border-radius: 0.625rem; 
+  outline: none;
+  background-color: hsla(0, 0%, 100%, 0.1);
+  color: var(--color-white-text);
 }
 
 .footer__bottom {
-  padding: 10px;
+  padding: 0.625rem; 
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .footer__copyright {
-  font-size: 0.875rem;
-  color: var(--color-white-text);
+  font-size: 0.875rem; 
+  color: var(--neutral-400);
 }
 
 .footer__socials {
   display: flex;
-  gap: 10px;
+  gap: 0.625rem; 
 }
 
 .footer__social-icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem; 
+  height: 1.5rem; 
 }

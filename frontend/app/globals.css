@@ -4,7 +4,7 @@
  --font-medium: var(--fontMedium); 
  --font-semiBold:var(--fontSemiBold);
  --font-bold:var(--fontBold);
- 
+
  /*SIZE*/
 
 /*LEADING TITLE BOLD*/
@@ -75,7 +75,7 @@
  --color-neutral: #121212;
  --neutral-1: #FFFFFF;
  --neutral-300: #EAEAEA;
- --neutral-3: #CFCFD5;
+ --neutral-400: #CFCFD5;
  --neutral-4: #9F9FAB;
  --neutral-5: #626270;
  --neutral-700: #36363E;
