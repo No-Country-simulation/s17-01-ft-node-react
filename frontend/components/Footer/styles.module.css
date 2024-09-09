@@ -1,0 +1,60 @@
+/* styles.module.css */
+
+.footer {
+  background-color: var(--neutral-700);
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    #1c1c20 0%,        
+    #121212 65%,     
+    #2c2c33 100%      
+  );
+  
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.footer__team,
+.footer__contact {
+  flex: 1;
+}
+
+.footer__heading {
+  font-size: 1.5rem;
+  color: var(--color-white-text);
+  margin-bottom: 10px;
+}
+
+.footer__contact-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.footer__bottom {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__copyright {
+  font-size: 0.875rem;
+  color: var(--color-white-text);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__social-icon {
+  width: 24px;
+  height: 24px;
+}
