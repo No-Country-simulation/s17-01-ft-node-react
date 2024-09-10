@@ -8,11 +8,11 @@ export class CreateSubscriptionDto {
   @IsNotEmpty({ message: 'Quantity is required' })
   quantity: number;
 
-  @ValidateNested()
+  //@ValidateNested()
   @Type(() => User)
   user: User;
 
   @Type(() => Plan)
-  @ValidateNested()
+  //@ValidateNested()
   plan: Plan;
 }
