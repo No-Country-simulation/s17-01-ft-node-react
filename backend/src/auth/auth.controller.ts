@@ -1,21 +1,13 @@
-import {
-  Controller,
-  UseGuards,
-  Post,
-  Request,
-  UsePipes,
-  Body,
-} from '@nestjs/common';
+import { Controller, UseGuards, Post, Request, Body } from '@nestjs/common';
 
 import { LocalAuthGuard } from './guards/local-auth.guard';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { RolesGuard } from './guards/roles.guard';
-import { Roles } from './decorators/roles.decorator';
 
 import { AuthService } from './auth.service';
 
 //DTO
 import { LoginUserDto } from 'src/user/dto/login-user.dto';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { RegisterTokenDto } from './dto/register-token.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -23,18 +15,17 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  async login(@Body() loginUserDto: LoginUserDto, @Request() req: any) {
+  async login(@Body() loginInfo: LoginUserDto, @Request() req: any) {
     return this.authService.login(req.user);
   }
 
   @Post('register-request')
-  @UsePipes()
-  async registerRequest(@Request() req) {
-    return this.authService.login(req.user);
+  async registerRequest(@Body() registerInfo: CreateUserDto) {
+    return this.authService.sentConfirmationEmail(registerInfo);
   }
 
   @Post('register')
-  async register(@Request() req) {
-    return this.authService.login(req.user);
+  async register(@Body() registerTokenInfo: RegisterTokenDto) {
+    return this.authService.registerUser(registerTokenInfo.token);
   }
 }

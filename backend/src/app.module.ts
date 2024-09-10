@@ -13,14 +13,6 @@ import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    UserModule,
-    AuthModule,
-    ComponentsModule,
-    PaymentsModule,
-    PaymentDetailsModule,
-    PlansModule,
-    SubscriptionsModule,
-    CategoriesModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -42,6 +34,14 @@ import { ConfigService } from '@nestjs/config';
       }),
       inject: [ConfigService],
     }),
+    UserModule,
+    AuthModule,
+    ComponentsModule,
+    PaymentsModule,
+    PaymentDetailsModule,
+    PlansModule,
+    SubscriptionsModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [],

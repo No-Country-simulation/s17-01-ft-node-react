@@ -3,6 +3,7 @@ import * as nodemailer from 'nodemailer';
 import { Transporter } from 'nodemailer';
 import { EmailParametersDto } from './dto/email-parameters.dto';
 import { ConfigService } from '@nestjs/config';
+import { InternalServerErrorException } from '@nestjs/common';
 
 @Injectable()
 export class MailService {
@@ -12,7 +13,7 @@ export class MailService {
     this.transporter = nodemailer.createTransport({
       host: this.configService.get<string>('SMTP_HOST'),
       port: this.configService.get<number>('SMTP_PORT'),
-      secure: false,
+      secure: true,
       auth: {
         user: this.configService.get<string>('SMTP_USER'),
         pass: this.configService.get<string>('SMTP_PASS'),
@@ -42,7 +43,14 @@ export class MailService {
           </div>`,
     };
 
-    await this.transporter.sendMail(mailOptions);
+    try {
+      await this.transporter.sendMail(mailOptions);
+    } catch (error) {
+      console.error('Error sending confirmation email:', error);
+      throw new InternalServerErrorException(
+        'Failed to send confirmation email.',
+      );
+    }
   }
 
   async sendResetPasswordEmail(parameters: EmailParametersDto) {
@@ -67,6 +75,13 @@ export class MailService {
           </div>`,
     };
 
-    await this.transporter.sendMail(mailOptions);
+    try {
+      await this.transporter.sendMail(mailOptions);
+    } catch (error) {
+      console.error('Error sending confirmation email:', error);
+      throw new InternalServerErrorException(
+        'Failed to send reset password email.',
+      );
+    }
   }
 }
