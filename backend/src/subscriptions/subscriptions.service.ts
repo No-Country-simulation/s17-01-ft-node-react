@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateSubscriptionDto } from './dto/create-subscription.dto';
 import { UpdateSubscriptionDto } from './dto/update-subscription.dto';
@@ -6,6 +10,7 @@ import { Subscription } from '../subscriptions/entities/subscription.entity';
 import { Plan } from '../plans/entities/plan.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
+import { QueryFailedError } from 'typeorm';
 
 @Injectable()
 export class SubscriptionsService {
@@ -33,6 +38,16 @@ export class SubscriptionsService {
       throw new NotFoundException(`Plan with ID ${plan.id} not found`);
     }
 
+    // Verificar si ya existe una suscripción para el mismo usuario y plan
+    const existingSubscription = await this.subscriptionRepository.findOne({
+      where: { user: foundUser, plan: foundPlan },
+    });
+    if (existingSubscription) {
+      throw new ConflictException(
+        'Subscription for this user and plan already exists',
+      );
+    }
+
     const subscription = this.subscriptionRepository.create({
       user: foundUser,
       plan: foundPlan,
@@ -41,7 +56,19 @@ export class SubscriptionsService {
       expirationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 días
     });
 
-    return this.subscriptionRepository.save(subscription);
+    try {
+      return await this.subscriptionRepository.save(subscription);
+    } catch (error) {
+      if (
+        error instanceof QueryFailedError &&
+        error.message.includes('duplicate key value violates unique constraint')
+      ) {
+        throw new ConflictException(
+          'Subscription for this user and plan already exists',
+        );
+      }
+      throw error;
+    }
   }
 
   async findOne(id: number): Promise<Subscription> {
