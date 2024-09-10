@@ -11,8 +11,6 @@ import { CategoriesModule } from './categories/categories.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 
-console.log(process.env.DATABASE_HOST);
-
 @Module({
   imports: [
     UserModule,
@@ -36,7 +34,9 @@ console.log(process.env.DATABASE_HOST);
         entities: [],
         autoLoadEntities: true,
         synchronize: true,
-        ssl: false,
+        ssl: {
+          rejectUnauthorized: false,
+        },
       }),
       inject: [ConfigService],
     }),
