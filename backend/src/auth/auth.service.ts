@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, UnauthorizedException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
@@ -21,17 +21,21 @@ export class AuthService {
     const user = await this.userService.findOneByEmail(loginUserDto.email);
 
     if (!user) {
-      return null;
+      throw new UnauthorizedException('User not found');
     }
 
     const isPasswordValid = await compare(loginUserDto.password, user.password);
-    if (isPasswordValid) {
-      return user;
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid password');
     }
-    return null;
+  
+    return user;
   }
 
   async login(user: User) {
+    if (!user) {
+      throw new UnauthorizedException('User not authenticated');
+    }
     const payload = { email: user.email, sub: user.id };
 
     const { password, ...result } = user;

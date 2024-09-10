@@ -1,26 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, ConflictException, BadRequestException } from '@nestjs/common';
 import { CreatePlanDto } from './dto/create-plan.dto';
 import { UpdatePlanDto } from './dto/update-plan.dto';
+import { Plan } from './entities/plan.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class PlansService {
-  create(createPlanDto: CreatePlanDto) {
-    return 'This action adds a new plan';
+  constructor(
+    @InjectRepository(Plan)
+    private planRepository: Repository<Plan>,
+  ) {}
+
+  async create(createPlanDto: CreatePlanDto): Promise<Plan> {
+    const existingPlan = await this.planRepository.findOne({ where: { name: createPlanDto.name } });
+    
+    if (existingPlan) {
+      throw new ConflictException('Plan with this name already exists');
+    }
+
+    const newPlan = this.planRepository.create(createPlanDto);
+    return await this.planRepository.save(newPlan);
   }
 
-  findAll() {
-    return `This action returns all plans`;
+  async findAll(): Promise<Plan[]> {
+    const plans = await this.planRepository.find();
+    
+    if (plans.length === 0) {
+      throw new NotFoundException('No plans available');
+    }
+
+    return plans;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} plan`;
+  async findOneById(id: number): Promise<Plan> {
+
+    const plan = await this.planRepository.findOne({ where: { id } });
+
+    if (!plan) {
+      throw new NotFoundException(`Plan with ID ${id} not found`);
+    }
+
+    return plan;
   }
 
-  update(id: number, updatePlanDto: UpdatePlanDto) {
-    return `This action updates a #${id} plan`;
+  async update(id: number, updatePlanDto: UpdatePlanDto): Promise<Plan> {
+    const result = await this.planRepository.update(id, updatePlanDto);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Plan with ID ${id} not found`);
+    }
+
+    return this.findOneById(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} plan`;
+  async remove(id: number): Promise<{ message: string }> {
+    const result = await this.planRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Plan with ID ${id} not found`);
+    }
+    return { message: `Plan with ID ${id} was successfully deleted` };
   }
 }
