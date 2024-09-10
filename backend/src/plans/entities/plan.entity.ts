@@ -19,6 +19,9 @@ export class Plan {
   @Column({ type: 'float' })
   price: number;
 
+  @Column('simple-array')
+  tiers: string[];
+
   @OneToMany(() => Subscription, (subscription) => subscription.plan)
   subscriptions: Subscription[];
 
