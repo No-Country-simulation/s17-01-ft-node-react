@@ -1,0 +1,21 @@
+.section{
+  display: flex;
+  gap: 40px;
+}
+.section__div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section__title {
+  color: var(--color-white-text);
+}
+.section__subtitle {
+  color: var(--neutral-400);
+  font-size: 20px;
+}
+.section__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
