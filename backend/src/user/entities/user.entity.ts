@@ -6,7 +6,6 @@ import {
   ManyToMany,
   OneToMany,
   OneToOne,
-  JoinColumn,
   JoinTable,
 } from 'typeorm';
 import { PaymentDetails } from 'src/payment-details/entities/payment-details.entity';
