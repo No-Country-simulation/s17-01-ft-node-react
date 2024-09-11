@@ -98,6 +98,9 @@
 }
 html{
   background-color: #1C1C20;
+  color: var(--neutral-1);
+  margin: 0;
+  padding: 0;
 }
 
 body{
@@ -107,9 +110,8 @@ body{
 /* CONTAINER  */
 .container {
   width: 100%;
-  max-width: 1200px; 
-  margin: 1rem auto 0;
-  padding: 0 1rem; 
+  margin: 0 auto ;
+  box-sizing: border-box;
 }
 
 
