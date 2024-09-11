@@ -19,13 +19,14 @@ export class Component {
   @Column()
   name: string;
 
-  @ManyToOne(() => User, (user) => user.myComponents)
+  @ManyToOne(() => User, (user) => user.myComponents, { eager: true })
   @JoinColumn({ name: 'uploader_id', referencedColumnName: 'id' })
   uploader: User;
 
   @ManyToMany(() => User, (user) => user.components)
   buyers: User[];
-  @Column()
+
+  @Column({ type: 'float' })
   price: number;
 
   @ManyToMany(() => Category, (category) => category.components)
@@ -49,7 +50,11 @@ export class Component {
   @Column()
   structure: string;
 
-  @Column({ type: 'float' })
+  @Column({nullable: true })
+  tier: string; // Define el nivel del componente
+
+
+  @Column({ type: 'float' ,nullable: true })
   rating: number;
 
   @Column()
@@ -64,6 +69,6 @@ export class Component {
   @Column()
   readme: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int' ,nullable: true })
   downloads: number;
 }

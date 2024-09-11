@@ -26,6 +26,7 @@ import { ConfigService } from '@nestjs/config';
         entities: [],
         autoLoadEntities: true,
         synchronize: true,
+        // logging: true,
         //! usar el ssl que le ande a cada uno
         ssl: {
           rejectUnauthorized: false,
