@@ -10,7 +10,7 @@ export default function Page() {
         <div className={styles.page}>
             <SignupForm/>
             <div className={styles.image_container}>
-                <Image src={signupImage} alt="signup_image.png" style={{width: "100%", height: "100%"}}/>
+                <Image src={signupImage} alt="signup_image.png" quality={100} style={{width: "100%", height: "100%"}}/>
             </div>
         </div>
     )

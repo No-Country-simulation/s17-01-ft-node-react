@@ -1,6 +1,5 @@
 import styles from "./styles.module.css"
 import { ButtonProps } from "@/lib/types"
-import { outfit } from "@/lib/fonts"
 import { medium } from "@/utils/fonts/fonts"
 import { useRef } from "react";
 
