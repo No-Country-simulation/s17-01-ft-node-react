@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1.75rem;
+    background: rgba(98, 98, 112, .10);
+    border: 1px solid var(--neutral-700);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    height: fit-content;
+}
+.container:nth-child(1) {
+    grid-row: 2;
+}
+.container:nth-child(2) {
+    grid-row: 1;
+}
+.container:nth-child(3) {
+    grid-row: 3;
+}
+.container.recommended {
+    padding: 4rem 2rem 2rem 2rem;
+    border: 1px solid var(--color-primary);
+}
+.recommended_p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-primary);
+    color: var(--neutral-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .75rem 0;
+}
+.title_container {
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    
+}
+.desc {
+    
+}
+.price_container {
+    display: flex;
+    flex-direction: column;
+}
+.price {
+    font-size: 1.75rem;
+}
+.limit {
+
+}
+.benefit_list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+.benefit_item {
+    display: flex;
+    gap: .5rem;
+}
+
+/* DESKTOP */
+@media (min-width: 1280px) {
+    .container:nth-child(1) {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    .container:nth-child(2) {
+        grid-row: 1;
+        grid-column: 2;
+    }
+    .container:nth-child(3) {
+        grid-row: 1;
+        grid-column: 3;
+    }
+}
