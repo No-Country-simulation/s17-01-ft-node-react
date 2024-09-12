@@ -24,7 +24,7 @@ export function Footer() {
 
           <div className={styles["footer__block"]}>
             <h2 className={styles["footer__heading"]}>Contenidos</h2>
-            <Link href="/components" className={styles["footer__link"]}>Componentes</Link>
+            <Link href="/componentes" className={styles["footer__link"]}>Componentes</Link>
             <Link href="/free-react" className={styles["footer__link"]}>Free React</Link>
           </div>
         </article>

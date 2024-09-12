@@ -1,0 +1,34 @@
+
+
+.dropdown__button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown__submenu {
+  list-style: none;
+  margin-left: 20px;
+  padding: 5px 0;
+}
+
+.dropdown__submenu-item {
+  margin: 5px 0;
+}
+
+.dropdown__link {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown--open .dropdown__submenu {
+  display: block;
+}
+
+.dropdown--closed .dropdown__submenu {
+  display: none;
+}
