@@ -59,7 +59,6 @@ export default function Page() {
     }, [form.email])
     return (
         <section>
-            <Loading/>
             <form onInvalid={handleInvalid} onSubmit={handleSubmit} className={styles.buttons_container}>
                 <Inputs
                     label="E-Mail"
