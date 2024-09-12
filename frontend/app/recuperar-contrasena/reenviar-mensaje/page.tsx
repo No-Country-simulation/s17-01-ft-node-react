@@ -9,25 +9,29 @@ export default function page() {
         <div className={styles.inputs_container}>
             <div className={styles.field_text_login}>
                 <div className={styles.login_tittle}>
-                    <h1>Restablecer tu contraseña</h1>
-                    <p>Ingresa tu correo electrónico</p>
+                    <h1>¡Enviado! ✅</h1>
+                    <p>
+                        Te hemos enviado un email. ¡Revisa tu bandeja de
+                        entrada!
+                    </p>
+                    <p>
+                        <span style={{ fontWeight: 600 }}>
+                            ¿No has recibido el email?{" "}
+                        </span>{" "}
+                        Revisa tu carpeta de spam para asegurarte de que el
+                        email no está ahí.
+                    </p>
                 </div>
-                <Inputs
-                    type="text"
-                    placeholder="Correo electrónico"
-                    onChange={() => {}}
-                    name="email"
-                />
             </div>
             <div className={styles.buttonContainer}>
                 <div>
                     <Button variant="tertiary" onClick={() => {}}>
-                        Cancelar
+                        Probar otro correo
                     </Button>
                 </div>
                 <div>
                     <Button variant="main" type="submit" onClick={() => {}}>
-                        Enviar código
+                        Reenviar código
                     </Button>
                 </div>
             </div>
