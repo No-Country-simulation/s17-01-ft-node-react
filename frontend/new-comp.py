@@ -22,8 +22,9 @@ def createFolder(route: str, folderName: str):
         for word in componentWords:
             componentName = componentName + word.title()
         indexFile.write(f"""import styles from "./styles.module.css";
+import {{ {componentName}Props }} from "@/lib/types";
 
-export function {componentName}() {{
+export function {componentName}(props:{componentName}Props) {{
     return <div>{componentName} component</div>;
 }};
                         """)
