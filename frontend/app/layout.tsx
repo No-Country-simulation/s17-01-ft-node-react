@@ -19,9 +19,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className='container'>
-        {/* <Navbar /> */}
+        <Navbar />
         <main className="main-content">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   )
