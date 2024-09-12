@@ -4,6 +4,10 @@ export type LoginFormProps = {
 export type CardProps = {
 
 }
+export type ManagementTableProps = {
+    current: "Contenido" | "Estadísticas" | "Billetera";
+    data: any[];
+}
 export type PricingCardProps = {
     title: string;
     description: string;
