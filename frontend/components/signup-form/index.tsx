@@ -5,6 +5,7 @@ import { Button, Inputs } from "@/ui-atoms";
 import Link from "next/link";
 import { useState } from "react";
 import MainLogo from "@/assets/logos/MainLogo";
+import { Loading } from "@/components";
 
 export function SignupForm() {
     const {form, setForm, missing, setMissing, error, setError} = useSignUpForm();
@@ -36,8 +37,10 @@ export function SignupForm() {
     return (
         <div className={styles.container}>
             <MainLogo/>
-            <h1 className={styles.title}>¡Bienvenido!</h1>
-            <h4 className={styles.subtitle}>Nos alegra conocerte.</h4>
+            <div className={styles.title_container}>
+                <h1 className={styles.title}>¡Bienvenido!</h1>
+                <h4 className={styles.subtitle}>Nos alegra conocerte.</h4>
+            </div>
             <form className={styles.form} onInvalid={handleInvalid} onSubmit={handleSubmit}>
                 <Inputs
                     label="Nombre de usuario"
@@ -88,7 +91,7 @@ export function SignupForm() {
                     disabled={disabled || Object.values(form).some(item => item == "")}
                     type="submit"
                     onClick={()=>handleSubmit}
-                >Iniciar sesión</Button>
+                >{disabled ? <Loading/> : "Iniciar sesión"}</Button>
             </form>
             <p className={styles.login}>¿Ya tienes cuenta? <Link className={styles.login_link} href={"/login"}>Inicia sesión</Link></p>
             <p className={styles.terms}>Al iniciar sesión, estás aceptando nuestros <Link className={styles.terms_link} href={"/terms"}>Terminos y Condiciones</Link></p>

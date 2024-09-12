@@ -8,9 +8,12 @@ export default function Page() {
     
     return (
         <div className={styles.page}>
-            <SignupForm/>
-            <div className={styles.image_container}>
-                <Image src={signupImage} alt="signup_image.png" style={{width: "100%", height: "100%"}}/>
+            <div className={styles.form_container}>
+                <SignupForm/>
+                <div className={styles.image_container}>
+                    {/* <Image src={signupImage} alt="signup_image.png" quality={100} style={{width: "auto", height: "100%"}}/> */}
+                    <img className={styles.img} src="/signup_image.png" alt="signup_image" />
+                </div>
             </div>
         </div>
     )

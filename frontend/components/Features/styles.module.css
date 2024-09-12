@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    border-radius: 5px;
+    background-color: var(--neutral-700);
+}
+
+.title {
+    margin: 1rem;
+    padding: 10px;
+    text-indent: 10px;
+    font-size: var(--heading02Desktop-font-size);
+}
+
+.paragraph {
+    margin: 0 1rem;
+    padding: 10px;
+    text-indent: 10px;
+    font-size: var(--footnoteDesktop-font-size);
+}
+
+.featuresContent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 4rem;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+    padding: 1rem; 
+}
+
+.buttonsWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    justify-content: center; 
+}
+
+.textContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+}
+
+.buttons button {
+    width: 20px; 
+    height: 20px; 
+    border-radius: 50%;
+    border: 1px solid transparent; 
+    background-color: var(--primary-400);
+    color: var(--primary-400);
+    font-size: 12px;
+    cursor: pointer;
+    margin: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    transform: scale(1); 
+}
+
+.buttons button.active {
+    transform: scale(2);
+    border-color: var(--primary-400);
+}
+
+
+.h2 {
+    font-size: var(--heading03Desktop-font-size);
+    margin-top: 2.8rem;
+    margin-bottom: 1rem; 
+}
+
+
+
+

@@ -2,13 +2,14 @@
 "use client";
 import Link from "next/link";
 import styles from "./styles.module.css";
-import { CircleHelpIcon } from "lucide-react";
+import { ChevronDownIcon, CircleHelpIcon } from "lucide-react";
 import { useUnderlineEffect } from "@/hooks";
 
 
 export function Navbar() {
   const { menuRef, underlineRef } = useUnderlineEffect();
-
+  const userProfilePicture = "https://randomuser.me/api/portraits/men/1.jpg";
+  const isAuthenticated = true;
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
@@ -36,10 +37,35 @@ export function Navbar() {
         <span className={styles.underline} ref={underlineRef}></span>
       </div>
       <div className={styles.actions}>
-        <Link href="/Auth/login" className={styles.loginButton}>
-          Ingresar
-        </Link>
-        <CircleHelpIcon color="#FFFFFF" width={24} height={24} />
+      {isAuthenticated ? (
+          // Si el usuario está autenticado, muestra la imagen de perfil y el dropdown
+          <div className={styles.profile}>
+            <img
+              src={userProfilePicture}
+              alt="Foto de perfil"
+              className={styles.profilePic}
+            />
+            <ChevronDownIcon
+              color="#FFFFFF"
+              width={24}
+              height={24}
+              className={styles.dropdownIcon}
+            />
+            <div className={styles.dropdownMenu}>
+              <Link href="/perfil">Mi Perfil</Link>
+              <Link href="/ajustes">Ajustes</Link>
+              <Link href="/logout">Cerrar Sesión</Link>
+            </div>
+          </div>
+        ) : (
+          // Si el usuario no está autenticado, muestra los botones de login
+          <>
+            <Link href="/login" className={styles.loginButton}>
+              Ingresar
+            </Link>
+            <CircleHelpIcon color="#FFFFFF" width={24} height={24} />
+          </>
+        )}
       </div>
     </nav>
   );
