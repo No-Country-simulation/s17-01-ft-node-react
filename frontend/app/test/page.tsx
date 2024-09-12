@@ -3,7 +3,7 @@ import styles from "./styles.module.css"
 import { Button, Inputs } from "@/ui-atoms";
 import React, { useEffect, useState } from "react";
 import { Send } from "lucide-react";
-
+import { Loading } from "@/components";
 // Simulación de hook para probar estados del Input
 function useSignUp() {
     const [form, setForm] = useState<{email:string, password:string, confirmPassword: string}>({email: "", password: "", confirmPassword: ""});

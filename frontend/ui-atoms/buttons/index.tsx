@@ -34,6 +34,8 @@ export function Button(props:ButtonProps) {
             onClick={handleClick}
             disabled={props.disabled}
             ref={rippleButtonRef}
-        >{props.children}</button>
+        >
+            {props.children}
+        </button>
     )
 }
