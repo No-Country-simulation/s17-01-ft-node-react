@@ -10,6 +10,7 @@ import { PaymentDetailsModule } from './payment-details/payment-details.module';
 import { CategoriesModule } from './categories/categories.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
+import { ImagesModule } from './images/images.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ConfigService } from '@nestjs/config';
     PlansModule,
     SubscriptionsModule,
     CategoriesModule,
+    ImagesModule,
   ],
   controllers: [],
   providers: [],

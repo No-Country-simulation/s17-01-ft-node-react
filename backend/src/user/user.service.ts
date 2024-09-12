@@ -8,13 +8,22 @@ import { User } from './entities/user.entity';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ConfigService } from '@nestjs/config';
+import { v2 as cloudinary } from 'cloudinary';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) {}
+    private configService: ConfigService,
+  ) {
+    cloudinary.config({
+      cloud_name: this.configService.get<string>('CLOUDINARY_CLOUD_NAME'),
+      api_key: this.configService.get<string>('CLOUDINARY_API_KEY'),
+      api_secret: this.configService.get<string>('CLOUDINARY_API_SECRET'),
+    });
+  }
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -155,6 +164,26 @@ export class UserService {
       status: 'success',
       message: 'Subscription successfully retrieved.',
       payload: user.subscription,
+    };
+  }
+
+  async updateAvatar(
+    id: number,
+    imageUrl: string,
+  ): Promise<{ status: string; message: string; payload: any }> {
+    const user = await this.userRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    user.avatar = imageUrl;
+    await this.userRepository.save(user);
+
+    return {
+      status: 'success',
+      message: 'User avatar has been updated',
+      payload: imageUrl,
     };
   }
 }
