@@ -11,6 +11,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { ImagesModule } from './images/images.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { ImagesModule } from './images/images.module';
     SubscriptionsModule,
     CategoriesModule,
     ImagesModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [],
