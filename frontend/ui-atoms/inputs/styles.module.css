@@ -20,21 +20,22 @@
     transition: all .2s;
 }
 .label.focusing {
-    transform: translateY(-42px);
+    transform: translateY(-2.25rem);
 }
 .input {
     /* width: 100%; */
     border: none;
-    border-bottom: 2px solid var(--neutral-3);
-    padding: 10px;
+    border-bottom: 2px solid var(--neutral-5);
+    padding: .2rem;
     color: var(--color-neutral);
     color: var(--neutral-1);
     font-weight: bold;
     position: relative;
     transition: all .2s;
     background: none;
-    font-size: 16px;
-    letter-spacing: 3px;
+    font-size: 1rem;
+    letter-spacing: .2rem;
+    /* border-bottom: 2px solid transparent; */
 }
 .input:hover {
     border-bottom: 2px solid var(--color-primary);
@@ -50,7 +51,7 @@
     border-bottom: 2px solid var(--color-primary);
 }
 .input.disabled {
-    
+    opacity: .5;
 }
 .input.missing, .input.error {
     border-bottom: 2px solid var(--color-error);
@@ -73,8 +74,9 @@
 .error_message {
     color: var(--color-error);
     margin: 0;
-    font-size: 14px;
+    font-size: .85rem;
     font-weight: 600;
     position: absolute;
-    bottom: -22px;
+    bottom: -1.25rem;
+    letter-spacing: 1px;
 }
