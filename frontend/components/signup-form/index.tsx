@@ -37,8 +37,10 @@ export function SignupForm() {
     return (
         <div className={styles.container}>
             <MainLogo/>
-            <h1 className={styles.title}>¡Bienvenido!</h1>
-            <h4 className={styles.subtitle}>Nos alegra conocerte.</h4>
+            <div className={styles.title_container}>
+                <h1 className={styles.title}>¡Bienvenido!</h1>
+                <h4 className={styles.subtitle}>Nos alegra conocerte.</h4>
+            </div>
             <form className={styles.form} onInvalid={handleInvalid} onSubmit={handleSubmit}>
                 <Inputs
                     label="Nombre de usuario"
