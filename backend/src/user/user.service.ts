@@ -68,4 +68,93 @@ export class UserService {
       message: `User with ID ${id} has been removed successfully`,
     };
   }
+
+  async findUserMyComponents(
+    id: number,
+  ): Promise<{ status: string; message: string; payload: any }> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['myComponents'],
+    });
+    if (user.myComponents.length === 0) {
+      throw new NotFoundException(`The user has not uploaded any components.`);
+    }
+    return {
+      status: 'success',
+      message: 'Uploaded components successfully retrieved.',
+      payload: user.myComponents,
+    };
+  }
+
+  async findUserComponents(
+    id: number,
+  ): Promise<{ status: string; message: string; payload: any }> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['components'],
+    });
+    if (user.components.length === 0) {
+      throw new NotFoundException(`The user has not purchased any components.`);
+    }
+    return {
+      status: 'success',
+      message: 'Purchased components successfully retrieved.',
+      payload: user.components,
+    };
+  }
+
+  async findUserPayments(
+    id: number,
+  ): Promise<{ status: string; message: string; payload: any }> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['payments'],
+    });
+    if (user.payments.length === 0) {
+      throw new NotFoundException(`The user has not made any payments.`);
+    }
+    return {
+      status: 'success',
+      message: 'Payments successfully retrieved.',
+      payload: user.payments,
+    };
+  }
+
+  async findUserPaymentDetails(
+    id: number,
+  ): Promise<{ status: string; message: string; payload: any }> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['paymentDetails'],
+    });
+    if (!user.paymentDetails) {
+      throw new NotFoundException(
+        `The user has not updated their payment details.`,
+      );
+    }
+    return {
+      status: 'success',
+      message: 'Payment details successfully retrieved.',
+      payload: user.paymentDetails,
+    };
+  }
+
+  async findUserSubscription(
+    id: number,
+  ): Promise<{ status: string; message: string; payload: any }> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['subscription'],
+    });
+    if (!user.subscription) {
+      throw new NotFoundException(
+        `The user does not have an active subscription.`,
+      );
+    }
+    return {
+      status: 'success',
+      message: 'Subscription successfully retrieved.',
+      payload: user.subscription,
+    };
+  }
 }

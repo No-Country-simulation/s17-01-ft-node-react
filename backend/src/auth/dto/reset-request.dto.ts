@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class RegisterTokenDto {
+export class ResetRequestDto {
   @IsString()
-  token: string;
+  email: string;
 }
