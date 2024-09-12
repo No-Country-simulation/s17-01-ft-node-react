@@ -23,7 +23,7 @@ export class Subscription {
   @Column({ type: 'timestamp' })
   expirationDate: Date;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, (user) => user.subscription)
   @JoinColumn({ name: 'user_id' })
   user: User;
 

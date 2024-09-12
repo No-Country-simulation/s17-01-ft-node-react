@@ -6,8 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
+
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -15,33 +20,48 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  sendConfirmationEmail(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  userProfile(@Req() req) {
+    return {
+      status: 'success',
+      message: 'User profile found.',
+      payload: req.user,
+    };
   }
 
-  @Post()
-  confirmRegistrarion(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  @UseGuards(JwtAuthGuard)
+  @Get('my-components')
+  async userMyComponents(@Req() req) {
+    const userId = req.user.id;
+    return await this.userService.findUserMyComponents(userId);
   }
 
-  @Get()
-  findAll() {
-    return this.userService.findAll();
+  @UseGuards(JwtAuthGuard)
+  @Get('components')
+  async userComponents(@Req() req) {
+    const userId = req.user.id;
+    return await this.userService.findUserComponents(userId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOneById(+id);
+  @UseGuards(JwtAuthGuard)
+  @Get('payments')
+  async userPayments(@Req() req) {
+    const userId = req.user.id;
+    return await this.userService.findUserPayments(userId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @UseGuards(JwtAuthGuard)
+  @Get('payment-details')
+  async userPaymentDetails(@Req() req) {
+    const userId = req.user.id;
+    return await this.userService.findUserPaymentDetails(userId);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  @UseGuards(JwtAuthGuard)
+  @Get('subscription')
+  async userSubscription(@Req() req) {
+    const userId = req.user.id;
+    return await this.userService.findUserSubscription(userId);
   }
 }

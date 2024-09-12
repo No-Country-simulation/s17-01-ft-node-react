@@ -1,7 +1,9 @@
-import { ConflictException, Injectable } from '@nestjs/common';
 import {
+  ConflictException,
+  Injectable,
   InternalServerErrorException,
   UnauthorizedException,
+  NotFoundException,
 } from '@nestjs/common';
 import { compare, hash } from 'bcrypt';
 
@@ -14,6 +16,9 @@ import { ConfigService } from '@nestjs/config';
 //DTO
 import { LoginUserDto } from 'src/user/dto/login-user.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
+import { ResetRequestDto } from './dto/reset-request.dto';
+import { ResetPayloadDto } from './dto/reset-payload.dto';
 
 @Injectable()
 export class AuthService {
@@ -68,7 +73,6 @@ export class AuthService {
       'BCRYPT_SALT_ROUNDS',
       10,
     );
-    console.log(typeof saltRounds);
     const hashedPassword = await hash(registerInfo.password, saltRounds);
 
     const payload = {
@@ -97,7 +101,6 @@ export class AuthService {
     return {
       status: 'success',
       message: 'Your account confirmation email has been sent.',
-      payload: null,
     };
   }
 
@@ -129,6 +132,69 @@ export class AuthService {
         user: result,
         token: this.jwtService.sign(payload, { expiresIn: '3h' }),
       },
+    };
+  }
+
+  async sentResetPasswordEmail(resetRequestInfo: ResetRequestDto) {
+    const user = await this.userService.findOneByEmail(resetRequestInfo.email);
+
+    const payload = {
+      email: user.email,
+    };
+
+    let token: string;
+
+    try {
+      token = this.jwtService.sign(payload, { expiresIn: '1h' });
+    } catch (error) {
+      console.error('Error signing JWT token:', error);
+      throw new InternalServerErrorException('Failed to generate token.');
+    }
+
+    const parameters = {
+      username: user.username,
+      email: user.email,
+      token: token,
+    };
+
+    await this.mailService.sendResetPasswordEmail(parameters);
+
+    return {
+      status: 'success',
+      message: 'Your reset password email has been sent.',
+    };
+  }
+
+  async resetPassword(resetPasswordInfo: ResetPasswordDto) {
+    let jwtPayload: ResetPayloadDto;
+
+    try {
+      jwtPayload = this.jwtService.verify<ResetPayloadDto>(
+        resetPasswordInfo.token,
+      );
+    } catch (error) {
+      console.error('Error verifying JWT token:', error);
+      throw new UnauthorizedException('Invalid or expired token.');
+    }
+
+    const saltRounds = +this.configService.get<number>(
+      'BCRYPT_SALT_ROUNDS',
+      10,
+    );
+    const newHashedPassword = await hash(
+      resetPasswordInfo.password,
+      saltRounds,
+    );
+
+    const user = await this.userService.findOneByEmail(jwtPayload.email);
+
+    const updatedUser = await this.userService.update(user.id, {
+      password: newHashedPassword,
+    });
+
+    return {
+      status: 'success',
+      message: 'Your password has been updated.',
     };
   }
 }

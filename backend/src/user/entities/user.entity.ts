@@ -46,7 +46,9 @@ export class User {
   })
   paymentDetails?: PaymentDetails;
 
-  @OneToOne(() => Subscription, { nullable: true })
+  @OneToOne(() => Subscription, (subscription) => subscription.user, {
+    nullable: true,
+  })
   subscription?: Subscription;
 
   @OneToMany(() => Component, (component) => component.uploader)
