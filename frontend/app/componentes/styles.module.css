@@ -1,21 +1,49 @@
-.section{
+.section {
   display: flex;
-  gap: 40px;
+  gap: 1.875rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.5rem;
 }
+
+.section__content {
+  flex: 1;
+}
+
+.section__aside {
+  width: 18.75rem; 
+}
+
 .section__div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 62px;
+  
 }
+
 .section__title {
   color: var(--color-white-text);
 }
+
 .section__subtitle {
   color: var(--neutral-400);
-  font-size: 20px;
+  font-size: 1.25rem; 
+  margin-bottom: 0.8rem;
 }
+
 .section__container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
   gap: 1.25rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.section__container-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0.3125rem; 
+  width: 100%;
 }

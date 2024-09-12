@@ -1,23 +1,18 @@
-import { LayoutGridIcon } from "lucide-react";
+'use client';
 import { Card } from "./_components/card/Card";
 import { SearchInput } from "./_components/searchInput/SearchInput";
 import styles from "./styles.module.css";
+import { MenuCategories } from "./_components/MenuCategories/MenuCategories";
+import { Pagination } from "./_components/pagination/Pagination";
 export default function page() {
   return (
     <section className={styles["section"]}>
-      {/*  */}
-      <div>
-        <h2 >Componentes</h2>
-        <button> <LayoutGridIcon  /> Todo los componentes</button>
-      <select name="" id="">
-        <option value="">Input</option>
-        <option value="">Select</option>
-        <option value="">Textarea</option>
-        <option value="">Button</option>
-      </select>
-      </div>
+     
+      <aside className={styles["section__aside"]}>
+        <MenuCategories />
+      </aside>
       {/* Muestra  Componentes */}
-      <div>
+      <div className={styles["section__content"]}>
         <div className={styles["section__div"]}>
           <h1 className={styles["section__title"]}>
             Diseño de Componentes React
@@ -30,6 +25,9 @@ export default function page() {
             {Array.from({ length: 12 }).map((_, index) => (
               <Card key={index} />
             ))}
+          </div>
+          <div className={styles["section__container-pagination"]}>
+          <Pagination itemsPerPage={10} maxPageButtons={6} onPageChange={() => {1}} totalItems={100} />
           </div>
         </section>
       </div>
