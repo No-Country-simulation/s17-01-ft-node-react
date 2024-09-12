@@ -76,7 +76,12 @@
     margin: 0;
     font-size: .85rem;
     font-weight: 600;
-    position: absolute;
-    bottom: -1.25rem;
     letter-spacing: 1px;
+    /* text-wrap: nowrap; */
+}
+@media (min-width: 1280px) {
+    .error_message {
+        position: absolute;
+        top: 2rem;
+    }
 }
