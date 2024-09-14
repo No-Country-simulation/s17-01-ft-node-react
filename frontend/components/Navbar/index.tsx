@@ -5,7 +5,6 @@ import styles from "./styles.module.css";
 import { ChevronDownIcon, CircleHelpIcon } from "lucide-react";
 import { useUnderlineEffect } from "@/hooks";
 
-
 export function Navbar() {
   const { menuRef, underlineRef } = useUnderlineEffect();
   const userProfilePicture = "https://randomuser.me/api/portraits/men/1.jpg";
@@ -37,7 +36,7 @@ export function Navbar() {
         <span className={styles.underline} ref={underlineRef}></span>
       </div>
       <div className={styles.actions}>
-      {isAuthenticated ? (
+        {isAuthenticated ? (
           // Si el usuario está autenticado, muestra la imagen de perfil y el dropdown
           <div className={styles.profile}>
             <img
@@ -70,6 +69,3 @@ export function Navbar() {
     </nav>
   );
 }
-
-
-

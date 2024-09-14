@@ -1,7 +1,7 @@
-'use client';
-import React, { useState } from 'react';
-import Link from 'next/link';
-import styles from './styles.module.css';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import styles from "./styles.module.css";
 
 interface Subcategory {
   name: string;
@@ -15,24 +15,24 @@ interface Category {
 
 const categories: Category[] = [
   {
-    name: 'Input',
+    name: "Input",
     subcategories: [
-      { name: 'Text Input', link: '/components/input/text' },
-      { name: 'Password Input', link: '/components/input/password' },
+      { name: "Text Input", link: "/components/input/text" },
+      { name: "Password Input", link: "/components/input/password" },
     ],
   },
   {
-    name: 'Layout',
+    name: "Layout",
     subcategories: [
-      { name: 'Grid', link: '/components/layout/grid' },
-      { name: 'Flexbox', link: '/components/layout/flexbox' },
+      { name: "Grid", link: "/components/layout/grid" },
+      { name: "Flexbox", link: "/components/layout/flexbox" },
     ],
   },
   {
-    name: 'Modal',
+    name: "Modal",
     subcategories: [
-      { name: 'Basic Modal', link: '/components/modal/basic' },
-      { name: 'Confirmation Modal', link: '/components/modal/confirmation' },
+      { name: "Basic Modal", link: "/components/modal/basic" },
+      { name: "Confirmation Modal", link: "/components/modal/confirmation" },
     ],
   },
 ];
@@ -45,30 +45,35 @@ export const Dropdown: React.FC = () => {
   };
 
   return (
-   
-      <ul>
-        {categories.map((category) => (
-          <li key={category.name} className={openCategory === category.name ? `${styles['dropdown--open']}` : `${styles['dropdown--closed']}`}>
-            <button
-              onClick={() => toggleCategory(category.name)}
-              className={styles['dropdown__button']}
-            >
-              {category.name}
-            </button>
-            {openCategory === category.name && (
-              <ul className={styles['dropdown__submenu']}>
-                {category.subcategories.map((sub) => (
-                  <li key={sub.name} className={styles['dropdown__submenu-item']}>
-                    <Link href={sub.link} className={styles['dropdown__link']}>
-                      {sub.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-    
+    <ul>
+      {categories.map((category) => (
+        <li
+          key={category.name}
+          className={
+            openCategory === category.name
+              ? `${styles["dropdown--open"]}`
+              : `${styles["dropdown--closed"]}`
+          }
+        >
+          <button
+            onClick={() => toggleCategory(category.name)}
+            className={styles["dropdown__button"]}
+          >
+            {category.name}
+          </button>
+          {openCategory === category.name && (
+            <ul className={styles["dropdown__submenu"]}>
+              {category.subcategories.map((sub) => (
+                <li key={sub.name} className={styles["dropdown__submenu-item"]}>
+                  <Link href={sub.link} className={styles["dropdown__link"]}>
+                    {sub.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
   );
 };

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 const MainLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -36,5 +36,5 @@ const MainLogo = (props: SVGProps<SVGSVGElement>) => (
       </clipPath>
     </defs>
   </svg>
-)
-export default MainLogo
+);
+export default MainLogo;
