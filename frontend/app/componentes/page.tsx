@@ -1,17 +1,17 @@
-'use client';
-import { Card } from "./_components/card/Card";
+import { getCategories } from "@/lib/axios/api/categories";
+import { MenuCategories } from "./_components/MenuCategories/MenuCategories";
 import { SearchInput } from "./_components/searchInput/SearchInput";
 import styles from "./styles.module.css";
-import { MenuCategories } from "./_components/MenuCategories/MenuCategories";
-import { Pagination } from "./_components/pagination/Pagination";
-export default function page() {
+import PaginatedCardList from "./_components/cards/PaginatedCardList";
+
+export default async function Page() {
+  const categories = await getCategories();
+
   return (
     <section className={styles["section"]}>
-     
       <aside className={styles["section__aside"]}>
-        <MenuCategories />
+        <MenuCategories categories={categories} />
       </aside>
-      {/* Muestra  Componentes */}
       <div className={styles["section__content"]}>
         <div className={styles["section__div"]}>
           <h1 className={styles["section__title"]}>
@@ -19,17 +19,7 @@ export default function page() {
           </h1>
           <SearchInput />
         </div>
-        <section className={styles["section__cards"]}>
-          <h2 className={styles["section__subtitle"]}>Plantillas Premiun</h2>
-          <div className={styles["section__container"]}>
-            {Array.from({ length: 12 }).map((_, index) => (
-              <Card key={index} />
-            ))}
-          </div>
-          <div className={styles["section__container-pagination"]}>
-          <Pagination itemsPerPage={10} maxPageButtons={6} onPageChange={() => {1}} totalItems={100} />
-          </div>
-        </section>
+        <PaginatedCardList />
       </div>
     </section>
   );

@@ -1,29 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
 import { StarIcon, UsersIcon } from "lucide-react";
 import styles from "./styles.module.css";
-
-export function Card() {
+import { Component } from "@/lib/types/api/components.type";
+export interface CardProps {
+  component: Component;
+}
+export default function Card({ component }: CardProps) {
   return (
     <div className={styles["card"]}>
       <img
         className={styles["card__image"]}
-        src="https://picsum.photos/id/237/200/300"
+        src={component.image}
         alt="Imagen de prueba"
       />
       <div className={styles["card__content"]}>
-        <h3 className={styles["card__title"]}>Título de la tarjeta</h3>
-        <p className={styles["card__description"]}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          euismod, nisl sit amet ultricies lacinia, nunc nisl aliquam nisl, eu
-        </p>
+        <h3 className={styles["card__title"]}>{component.name}</h3>
+        <p className={styles["card__description"]}>{component.description}</p>
         <div className={styles["card__stats"]}>
           <div className={styles["card__stat"]}>
             <UsersIcon className={styles["card__icon"]} />
-            <span className={styles["card__stat-text"]}>1.405</span>
+            <span className={styles["card__stat-text"]}>
+              {component.downloads}
+            </span>
           </div>
           <div className={styles["card__stat"]}>
             <StarIcon className={styles["card__icon"]} />
-            <span className={styles["card__stat-text"]}>4.8(783)</span>
+            <span className={styles["card__stat-text"]}>
+              {component.rating}({component.downloads})
+            </span>
           </div>
         </div>
       </div>

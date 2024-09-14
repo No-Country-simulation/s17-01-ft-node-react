@@ -1,0 +1,81 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+.selector_section,
+.table_section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.table_section {
+}
+.selector_desc {
+}
+.nav {
+}
+.nav_list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.nav_item {
+}
+
+/* SELECTOR */
+.selector {
+  font-family: "Poppins";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 1.5rem;
+  width: 100%;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--neutral-4);
+  background: rgba(62, 62, 62, 0.5);
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.selector:hover {
+  background: rgba(62, 62, 62, 0.75);
+}
+.selector.current {
+  color: var(--neutral-700);
+  background: var(--primary-400);
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .page {
+    gap: 3rem;
+  }
+  .selector_section,
+  .table_section {
+    gap: 0.5rem;
+  }
+  .table_section {
+  }
+  .selector_desc {
+  }
+  .nav {
+  }
+  .nav_list {
+    flex-direction: row;
+  }
+  .nav_item {
+  }
+  .selector {
+  }
+  .selector.current {
+  }
+}
