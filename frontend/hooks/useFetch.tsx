@@ -93,19 +93,22 @@ export function useFetch<T>({
 
       // Set a timer to handle the loading delay
       const timer = setTimeout(() => {
-        fetchFn().then(result => {
-          if (useLocalState) {
-            setData(result);
-          }
-          if (onSuccess) onSuccess(result);
-        }).catch(err => {
-          setError(err as Error);
-          if (onError) onError(err as Error);
-        }).finally(() => {
-          clearTimeout(timer);
-          setIsLoading(false);
-          if (onFinally) onFinally();
-        });
+        fetchFn()
+          .then((result) => {
+            if (useLocalState) {
+              setData(result);
+            }
+            if (onSuccess) onSuccess(result);
+          })
+          .catch((err) => {
+            setError(err as Error);
+            if (onError) onError(err as Error);
+          })
+          .finally(() => {
+            clearTimeout(timer);
+            setIsLoading(false);
+            if (onFinally) onFinally();
+          });
       }, loadingDelay);
     };
 

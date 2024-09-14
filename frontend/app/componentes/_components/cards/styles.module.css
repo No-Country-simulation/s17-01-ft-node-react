@@ -1,7 +1,6 @@
 .section__cards {
   width: 100%;
   min-height: 500px;
-
 }
 .section__cards--loading {
   display: flex;

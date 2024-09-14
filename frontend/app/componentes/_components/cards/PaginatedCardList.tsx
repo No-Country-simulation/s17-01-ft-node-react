@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   useComponentStore,
   useCurrentPage,
@@ -27,7 +27,7 @@ export default function PaginatedCardList() {
       setAllComponents(data);
     },
     useLocalState: false,
-    loadingDelay: 1000, 
+    loadingDelay: 1000,
   });
 
   const itemsPerPage = 9;
@@ -42,7 +42,12 @@ export default function PaginatedCardList() {
     return components.slice(startIndex, endIndex);
   };
 
-  if (isLoading) return <div className={styles["section__cards--loading"]}><Loading /></div>;
+  if (isLoading)
+    return (
+      <div className={styles["section__cards--loading"]}>
+        <Loading />
+      </div>
+    );
   if (error) return <div>Error</div>;
 
   const paginatedItems = getPaginatedItems();
