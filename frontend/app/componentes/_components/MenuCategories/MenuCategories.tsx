@@ -1,73 +1,49 @@
 "use client";
-import { useState } from "react";
+import { LayoutGridIcon } from "lucide-react";
 import styles from "./styles.module.css";
-import { ChevronDownIcon, LayoutGridIcon } from "lucide-react";
+import { Categories } from "@/lib/types/api/categories.type";
+import {
+  useCurrentPage,
+  useFilterComponentStore,
+} from "@/store/componentStore";
 
-const categories: {
-  id: number;
-  name: string;
-  subcategories: { name: string }[];
-}[] = [
-  {
-    id: 1,
-    name: "Input",
-    subcategories: [{ name: "Text Input" }, { name: "Password Input" }],
-  },
-  {
-    id: 2,
-    name: "Layout",
-    subcategories: [{ name: "Grid" }, { name: "Flexbox" }],
-  },
-  {
-    id: 3,
-    name: "Modal",
-    subcategories: [{ name: "Basic Modal" }, { name: "Confirmation Modal" }],
-  },
-  {
-    id: 4,
-    name: "Dropdown",
-    subcategories: [
-      { name: "Basic Dropdown" },
-      { name: "Dropdown with Submenus" },
-    ],
-  },
-];
+interface Category {
+  categories: Categories[];
+}
 
-export const MenuCategories = () => {
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
-
-  const toggleDropdown = (categoryId: number) => {
-    setOpenDropdown((prev) => (prev === categoryId ? null : categoryId));
-  };
-
+export const MenuCategories = ({ categories }: Category) => {
+  const { filters, setCategory } = useFilterComponentStore();
+  const { setCurrentPage } = useCurrentPage();
   return (
     <div className={styles["menu"]}>
       <h1 className={styles["menu__title"]}>Componentes</h1>
-      <div className={styles["menu__item--default"]}>
+      <div
+        className={`${styles["menu__item--default"]} ${
+          filters.category === undefined ? styles["menu__item--active"] : ""
+        }`}
+        onClick={() => setCategory(undefined)}
+      >
         <LayoutGridIcon />
         <span>Todo los componentes</span>
       </div>
-      {categories.map((category) => (
-        <div key={category.id} className={styles["menu__item"]}>
-          <button
-            onClick={() => toggleDropdown(category.id)}
-            className={styles["menu__button"]}
-            aria-expanded={openDropdown === category.id}
-          >
-            <ChevronDownIcon className={styles["menu__icon"]} />
-            {category.name}
-          </button>
-          {openDropdown === category.id && (
-            <ul className={styles["menu__submenu"]}>
-              {category.subcategories.map((sub) => (
-                <li key={sub.name} className={styles["menu__submenu-item"]}>
-                  {sub.name}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      ))}
+      <ul className={styles["menu__ul"]}>
+        {categories &&
+          categories.map((category) => (
+            <li
+              key={category.id}
+              className={`${styles["menu__item"]} ${
+                filters.category?.id === category.id
+                  ? styles["menu__item--active"]
+                  : ""
+              }`}
+              onClick={() => {
+                setCategory(category), setCurrentPage(1);
+              }}
+            >
+              {category.name}
+            </li>
+          ))}
+      </ul>
     </div>
   );
 };

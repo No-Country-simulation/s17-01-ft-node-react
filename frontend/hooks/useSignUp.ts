@@ -36,7 +36,7 @@ export function useSignUpForm() {
   });
   const { short, uppercase, specialCharacter, number, match } = passwordMatches(
     form.password,
-    form.confirmPassword
+    form.confirmPassword,
   );
   useEffect(() => {
     if (!form.password)

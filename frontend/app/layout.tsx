@@ -1,28 +1,31 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import { Footer, Navbar } from '@/components'
-import { bold, regular,semiBold, medium } from '@/utils/fonts/fonts'
+import type { Metadata } from "next";
+import "./globals.css";
+import { Footer, Navbar } from "@/components";
+import { bold, regular, semiBold, medium } from "@/utils/fonts/fonts";
 
 export const metadata: Metadata = {
-  title: 'CodePieces',
-}
+  title: "CodePieces",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${regular.variable} ${bold.variable} ${semiBold.variable} ${medium.variable}`}>
+    <html
+      lang="en"
+      className={`${regular.variable} ${bold.variable} ${semiBold.variable} ${medium.variable}`}
+    >
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className='container'>
-        {/* <Navbar /> */}
+      <body className="container">
+        <Navbar />
         <main className="main-content">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
-  )
+  );
 }

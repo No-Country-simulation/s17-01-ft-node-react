@@ -11,27 +11,44 @@ export function Footer() {
         <article className={styles["footer__article"]}>
           <div className={styles["footer__block"]}>
             <h2 className={styles["footer__heading"]}>Equipo</h2>
-            <Link href="/team" className={styles["footer__link"]}>Nosotros</Link>
-            <Link href="/team" className={styles["footer__link"]}>Codeplus</Link>
-            <Link href="/terms" className={styles["footer__link"]}>Términos y Condiciones</Link>
+            <Link href="/team" className={styles["footer__link"]}>
+              Nosotros
+            </Link>
+            <Link href="/team" className={styles["footer__link"]}>
+              Codeplus
+            </Link>
+            <Link href="/terms" className={styles["footer__link"]}>
+              Términos y Condiciones
+            </Link>
           </div>
 
           <div className={styles["footer__block"]}>
             <h2 className={styles["footer__heading"]}>Comunidad</h2>
-            <Link href="/blogs" className={styles["footer__link"]}>Blogs</Link>
-            <Link href="/faq" className={styles["footer__link"]}>Preguntas Frecuentes</Link>
+            <Link href="/blogs" className={styles["footer__link"]}>
+              Blogs
+            </Link>
+            <Link href="/faq" className={styles["footer__link"]}>
+              Preguntas Frecuentes
+            </Link>
           </div>
 
           <div className={styles["footer__block"]}>
             <h2 className={styles["footer__heading"]}>Contenidos</h2>
-            <Link href="/componentes" className={styles["footer__link"]}>Componentes</Link>
-            <Link href="/free-react" className={styles["footer__link"]}>Free React</Link>
+            <Link href="/componentes" className={styles["footer__link"]}>
+              Componentes
+            </Link>
+            <Link href="/free-react" className={styles["footer__link"]}>
+              Free React
+            </Link>
           </div>
         </article>
         <aside className={styles["footer__contact"]}>
           <h2 className={styles["footer__heading"]}>¡Contáctanos ahora!</h2>
           <form className={styles["footer__form"]}>
-            <input className={styles["footer__input"]} placeholder="Ingresa tu e-mail"/>
+            <input
+              className={styles["footer__input"]}
+              placeholder="Ingresa tu e-mail"
+            />
             <button className={styles["footer__button"]}>Enviar</button>
           </form>
         </aside>
