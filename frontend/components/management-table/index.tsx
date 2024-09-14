@@ -1,3 +1,4 @@
+'use client'
 import styles from "./styles.module.css";
 import { ManagementTableProps } from "@/lib/types";
 import { format } from "date-fns";
