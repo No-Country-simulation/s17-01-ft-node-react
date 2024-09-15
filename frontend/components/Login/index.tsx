@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import imageLogin from "@/public/background_image.png";
 import { useForm } from "@/hooks/useForm";
+import { login } from "@/lib/axios/api/auth";
 
 export function Login() {
   const { form, setForm, missing, setMissing, error, setError } = useForm();
@@ -36,6 +37,9 @@ export function Login() {
     try {
       setDisabled(true);
       // const response = await fetch("/api/login", { ... });
+      const response = await login(form);
+      console.log("respuesta de login",response);
+      localStorage.setItem("token", response.payload.token)
       setDisabled(false);
     } catch (error) {
       console.error("Error al iniciar sesión", error);
