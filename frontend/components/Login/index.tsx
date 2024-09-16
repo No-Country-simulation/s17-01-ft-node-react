@@ -8,10 +8,17 @@ import Image from "next/image";
 import imageLogin from "@/public/background_image.png";
 import { useForm } from "@/hooks/useForm";
 import { login } from "@/lib/axios/api/auth";
+import { useUserStore } from "@/store/userStore";
+import { useRouter } from "next/navigation";
+// import { Loading } from "../loading";
+
 
 export function Login() {
+  const router = useRouter()
   const { form, setForm, missing, setMissing, error, setError } = useForm();
   const [disabled, setDisabled] = useState<boolean>(false);
+
+  const setUser = useUserStore((state) => state.setUser)
 
   const handleChange = (field: keyof typeof form, value: string) => {
     setForm({
@@ -20,40 +27,60 @@ export function Login() {
     });
   };
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleInvalid = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    const input = e.target as HTMLInputElement;
 
-    const emailTrimmed = form.email.trim();
-    const passwordTrimmed = form.password.trim();
+    if (!form[input.name as keyof typeof form].trim()) {
+      setMissing((prevMissing) => ({
+        ...prevMissing,
+        [input.name]: true,
+      }));
 
-    if (!emailTrimmed || !passwordTrimmed) {
-      setError({ ...error, email: "Por favor, complete todos los campos." });
-      return;
-    }
-    if (error.password || error.email) return;
-
-    console.log(form);
-    
-    try {
-      setDisabled(true);
-      // const response = await fetch("/api/login", { ... });
-      const response = await login(form);
-      console.log("respuesta de login",response);
-      localStorage.setItem("token", response.payload.token)
-      setDisabled(false);
-    } catch (error) {
-      console.error("Error al iniciar sesión", error);
-      setDisabled(false);
+      setError((prevError) => ({
+        ...prevError,
+        [input.name]: `El campo ${input.name} es obligatorio.`,
+      }));
     }
   };
 
-  const handleInvalid = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const input = e.target as HTMLInputElement;
-    if (input.name === "email") {
-      setError({ ...error, email: "Formato de correo inválido." });
+
+    if (error.password || error.email) return;
+
+    try {
+      setDisabled(true);
+      const response = await login(form);
+      console.log("respuesta de login", response);
+
+      if (response.status === "success") {
+        const { user, token } = response.payload;
+        localStorage.setItem("token", token);
+
+        setUser(user, token);
+        router.push('componentes')
+      }
+      setDisabled(false);
+    } catch (error: any) {
+
+      if (error.message === "Network Error") {
+
+        setError({ ...error, password: "Error de red, intente de nuevo más tarde." })
+      } else {
+        const dataError = error.response.data
+        if (dataError.message.includes("User with email")) {
+          setError({ ...error, email: "Correo no registrado" })
+        } else if (dataError.message.includes("The user could not be validated")) {
+          setError({ ...error, password: "Contraseña incorrecta." });
+        } else {
+          setError({ ...error, email: "Error al iniciar sesión. Inténtelo de nuevo." });
+        }
+      }
+      console.log("response error:", error)
+
+      setDisabled(false);
     }
-    setMissing({ ...missing, [input.name]: true });
   };
 
   return (
@@ -81,6 +108,7 @@ export function Login() {
             type="email"
             value={form.email}
             placeholder="Ej. ejemplo@gmail.com"
+            missing={missing.email}
             required={true}
             disabled={disabled}
             errorMessage={error.email}
@@ -97,6 +125,7 @@ export function Login() {
             type="password"
             value={form.password}
             placeholder="Ingrese su contraseña"
+            missing={missing.password}
             required={true}
             disabled={disabled}
             errorMessage={error.password}
@@ -109,6 +138,7 @@ export function Login() {
             onClick={() => handleLogin}
           >
             Iniciar sesión
+            {/* {disabled? <Loading /> : "Iniciar sesión" } */}
           </Button>
 
           <p className={styles.link_signup}>

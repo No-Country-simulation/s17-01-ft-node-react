@@ -19,16 +19,48 @@ export function useForm() {
 
   useEffect(() => {
 
-    if (form.email && !validateEmail(form.email)) {
-      setError({ ...error, email: "Ingrese un email válido" });
-    } else {
-      setError({ ...error, email: "" });
+    if (form.email) {
+      if (!validateEmail(form.email)) {
+        setError((prevError) => ({
+          ...prevError,
+          email: "Ingrese un email válido",
+        }));
+      } else {
+        setError((prevError) => ({
+          ...prevError,
+          email: "",
+        }));
+      }
     }
 
-    if (form.password && form.password.length < 8) {
-      setError({ ...error, password: "La contraseña debe tener al menos 8 caracteres" });
-    } else {
-      setError({ ...error, password: "" });
+    if (form.password) {
+
+      if (short) {
+        setError((prevError) => ({
+          ...prevError,
+          password: "La contraseña debe tener al menos 8 caracteres",
+        }));
+      } else if (uppercase) {
+        setError((prevError) => ({
+          ...prevError,
+          password: "La contraseña debe tener al menos una letra mayúscula",
+        }));
+      } else if (specialCharacter) {
+        setError((prevError) => ({
+          ...prevError,
+          password: "La contraseña debe tener al menos un carácter especial",
+        }));
+      } else if (number) {
+        setError((prevError) => ({
+          ...prevError,
+          password: "La contraseña debe tener al menos un número",
+        }));
+      } else {
+        setError((prevError) => ({
+          ...prevError,
+          password: "",
+        }));
+      }
     }
   }, [form.email, form.password]);
 

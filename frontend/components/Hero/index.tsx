@@ -19,7 +19,7 @@ export function Hero() {
         </div>
         <p>Construye más rápido, con los mejores componentes</p>
         <div className={styles.buttonContainer}>
-          <Link href="/login" className={styles.button}>
+          <Link href="/Auth/login" className={styles.button}>
             Comienza ahora
           </Link>
         </div>
