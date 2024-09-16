@@ -1,0 +1,64 @@
+.field_login {
+    height: 571px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.field_inputs {
+    height: 526px;
+    width: 900px;
+    border-radius: 16px;
+    border: 1px solid var(--neutral-5);
+    padding: 37px 74px;
+    display: flex;
+    flex-direction: column;
+    gap: 74px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: end;
+}
+
+.buttonContainer > * {
+    width: fit-content;
+}
+
+.inputs_container {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.helpSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.login_tittle {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.login_tittle > * {
+    margin: 0;
+}
+
+.field_text_login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.helpElement {
+    display: inline;
+}

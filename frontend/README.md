@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ARQUITECTURA
 
-## Getting Started
+## PAGES
 
-First, run the development server:
+- Las pages se encuentran en la carpeta /app
+- Para crear una nueva ruta tenemos que crear una nueva carpeta con el nombre de la ruta usando dash-case. En caso de ser una ruta dinámica habrá que envolver el nombre de la carpeta entre corchetes [subruta]
+- Dentro de la carpeta se encuentran los siguientes archivos:
+  - En caso de que la ruta tenga un layout agregaremos el archivo layout.tsx
+  - En caso de que la ruta tenga una página estática agreamos un page.tsx
+  - Si tiene estilos propios agregamos un styles.module.css
+- PARA CREAR UNA NUEVA PAGE CORRER EL SCRIPT `yarn newPage` y seguir las intrucciones
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## COMPONENTS
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Para crear un nuevo componente (forms, cards, etc) tenemos que crear una nueva carpeta con el nombre del componente en dash-case.
+  - Dentro de la carpeta se encuentran los siguientes archivos:
+    - index.tsx
+    - styles.module.css
+- Tendremos un index.tsx que servirá para centralizar los imports y los exports.
+- PARA CREAR UN NUEVO COMPONENTE CORRER EL SCRIPT `yarn newComp` y seguir las intrucciones
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## UI-ATOMS
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Para crear un nuevo UI-ATOM (buttons, inputs, etc) tenemos que crear una nueva carpeta con el nombre del átomo en dash-case.
+  - Dentro de la carpeta se encuentran los siguientes archivos:
+    - index.tsx
+    - styles.module.css
+- Tendremos un index.tsx que servirá para centralizar los imports y los exports.
+- PARA CREAR UN NUEVO UI-ATOM CORRER EL SCRIPT `yarn newComp` y seguir las intrucciones

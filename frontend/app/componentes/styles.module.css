@@ -1,0 +1,22 @@
+.section {
+  display: flex;
+  gap: 1.875rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.5rem;
+}
+
+.section__content {
+  flex: 1;
+}
+
+.section__aside {
+  width: 18.75rem;
+}
+
+.section__div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 62px;
+}
