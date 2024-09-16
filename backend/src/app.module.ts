@@ -30,9 +30,9 @@ import { SeedModule } from './seed/seed.module';
         synchronize: true,
         // logging: true,
         //! usar el ssl que le ande a cada uno
-        ssl: {
+       /*  ssl: {
           rejectUnauthorized: false,
-        },
+        }, */
         //ssl: false
       }),
       inject: [ConfigService],

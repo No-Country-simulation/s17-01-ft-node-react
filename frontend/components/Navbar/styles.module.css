@@ -107,3 +107,18 @@
   color: #333;
   text-decoration: none;
 }
+
+.dropdownMenu a:hover {
+  color: var(--color-primary);
+}
+
+.logoutButton {
+  color: var(--neutral-700);
+  font-weight: bold;
+  text-decoration: none;
+  padding: 16px 40px;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}

@@ -12,7 +12,7 @@ export function Home() {
       <Features />
       <UseDetails />
       <AboutUs />
-      <DownloadApp />
+      {/* <DownloadApp /> */}
     </>
   );
 }

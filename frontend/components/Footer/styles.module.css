@@ -2,6 +2,7 @@
   background-color: var(--neutral-700);
   background: linear-gradient(to bottom, #1c1c20 0%, #121212 65%, #2c2c33 100%);
   padding: 1.25rem;
+  margin-top: 2rem;
 }
 
 .footer__content {

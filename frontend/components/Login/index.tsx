@@ -18,7 +18,7 @@ export function Login() {
   const { form, setForm, missing, setMissing, error, setError } = useForm();
   const [disabled, setDisabled] = useState<boolean>(false);
 
-  const setUser = useUserStore((state) => state.setUser)
+  const {setUser} = useUserStore();
 
   const handleChange = (field: keyof typeof form, value: string) => {
     setForm({
@@ -57,9 +57,8 @@ export function Login() {
       if (response.status === "success") {
         const { user, token } = response.payload;
         localStorage.setItem("token", token);
-
-        setUser(user, token);
-        router.push('componentes')
+        setUser(user);
+        router.push('http://localhost:3000/componentes')
       }
       setDisabled(false);
     } catch (error: any) {

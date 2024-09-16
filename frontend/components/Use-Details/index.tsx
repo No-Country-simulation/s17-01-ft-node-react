@@ -23,7 +23,7 @@ export function UseDetails() {
       </div>
       <div className={styles.rightBox}>
         <Image
-          src="/Use.png"
+          src="/viewComponents.png"
           width={549}
           height={435}
           quality={100}
