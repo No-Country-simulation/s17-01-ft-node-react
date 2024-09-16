@@ -4,19 +4,27 @@ import Link from "next/link";
 import styles from "./styles.module.css";
 import { ChevronDownIcon, CircleHelpIcon } from "lucide-react";
 import { useUnderlineEffect } from "@/hooks";
-
+import { useUserStore } from "@/store/userStore";
+import { useRouter } from "next/navigation";
 export function Navbar() {
+  const router = useRouter();
   const { menuRef, underlineRef } = useUnderlineEffect();
-  const userProfilePicture = "https://randomuser.me/api/portraits/men/1.jpg";
-  const isAuthenticated = true;
+  const {user, setUser} = useUserStore();
+  const userProfilePicture = user?.avatar || "https://randomuser.me/api/portraits/men/1.jpg";
+ const isAuthenticated = window.localStorage.getItem("token") || null;
+ const handleLogout = () => {
+   window.localStorage.removeItem("token");
+   setUser(null);
+  router.push("/");
+ }
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <img src="/CodePiecesLogo.png" alt="Logo" />
       </div>
       <div className={styles.menu} ref={menuRef}>
-        <Link href="/" className={styles.navLink}>
-          Inicio
+        <Link href={ isAuthenticated ? "/my-management" : "/"} className={styles.navLink}>
+          {isAuthenticated ? "Mi gestión" : "Inicio"}
         </Link>
         <Link href="/componentes" className={styles.navLink}>
           Componentes
@@ -53,13 +61,13 @@ export function Navbar() {
             <div className={styles.dropdownMenu}>
               <Link href="/perfil">Mi Perfil</Link>
               <Link href="/ajustes">Ajustes</Link>
-              <Link href="/logout">Cerrar Sesión</Link>
+              <button onClick={handleLogout} className={styles.logoutButton}>Cerrar Sesión</button>
             </div>
           </div>
         ) : (
           // Si el usuario no está autenticado, muestra los botones de login
           <>
-            <Link href="/login" className={styles.loginButton}>
+            <Link href="Auth/login" className={styles.loginButton}>
               Ingresar
             </Link>
             <CircleHelpIcon color="#FFFFFF" width={24} height={24} />
