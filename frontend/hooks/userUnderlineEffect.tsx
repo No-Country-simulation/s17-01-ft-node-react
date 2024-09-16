@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 export function useUnderlineEffect() {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -12,8 +12,12 @@ export function useUnderlineEffect() {
 
     // Solo realiza manipulaciones si los elementos están disponibles
     if (menu && underline) {
-      const links = Array.from(menu.querySelectorAll('a')) as HTMLAnchorElement[];
-      const activeLink = links.find(link => link.getAttribute('href') === pathname);
+      const links = Array.from(
+        menu.querySelectorAll("a"),
+      ) as HTMLAnchorElement[];
+      const activeLink = links.find(
+        (link) => link.getAttribute("href") === pathname,
+      );
 
       if (activeLink) {
         // Actualiza el estilo del subrayado

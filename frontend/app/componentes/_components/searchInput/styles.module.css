@@ -1,0 +1,24 @@
+.block {
+  width: 232px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: hsla(0, 0%, 100%, 0.05);
+  border: none;
+  border-radius: 16px;
+}
+
+.block__input {
+  width: 100%;
+  padding-right: 2rem; /* Espacio para el icono a la derecha */
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--color-white-text);
+  font-size: 1rem;
+}
+
+.block__icon {
+  color: var(--color-white-text);
+  font-size: 1.5rem;
+}

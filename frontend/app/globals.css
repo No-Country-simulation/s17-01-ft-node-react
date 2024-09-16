@@ -1,113 +1,115 @@
-:root{
+:root {
   /*FONTS*/
- --font-regular:var(--fontRegular);
- --font-medium: var(--fontMedium); 
- --font-semiBold:var(--fontSemiBold);
- --font-bold:var(--fontBold);
- 
- /*SIZE*/
+  --font-regular: var(--fontRegular);
+  --font-medium: var(--fontMedium);
+  --font-semiBold: var(--fontSemiBold);
+  --font-bold: var(--fontBold);
 
-/*LEADING TITLE BOLD*/
+  /*SIZE*/
 
---leadingTitleDesktop-font-size: 52px;
---leadingTitleMobile-font-size: 34px;
+  /*LEADING TITLE BOLD*/
 
-/*LARGE TITLE*/
---largeTitleDesktop-font-size:48px;
---largeTitleMobile-font-size:28px;
+  --leadingTitleDesktop-font-size: 52px;
+  --leadingTitleMobile-font-size: 34px;
 
-/*HEADINGS 01*/
---heading01Desktop-font-size:44px;
---heading01Mobile-font-size:22px;
+  /*LARGE TITLE*/
+  --largeTitleDesktop-font-size: 48px;
+  --largeTitleMobile-font-size: 28px;
 
-/*HEADINGS 02*/
---heading02Desktop-font-size:38px;
---heading02Mobile-font-size:20px;
+  /*HEADINGS 01*/
+  --heading01Desktop-font-size: 44px;
+  --heading01Mobile-font-size: 22px;
 
-/*HEADINGS 03*/
---heading03Desktop-font-size:31px;
---heading03Mobile-font-size:18px;
+  /*HEADINGS 02*/
+  --heading02Desktop-font-size: 38px;
+  --heading02Mobile-font-size: 20px;
 
-/*HEADLINE*/
---headlineDesktop-font-size:28px;
---headlineMobile-font-size:16px;
+  /*HEADINGS 03*/
+  --heading03Desktop-font-size: 31px;
+  --heading03Mobile-font-size: 18px;
 
-/*PARAGRAPH*/
---bodyDesktop-font-size:28px;
---bodyMobile-font-size:16px;
+  /*HEADLINE*/
+  --headlineDesktop-font-size: 28px;
+  --headlineMobile-font-size: 16px;
 
---calloutDesktop-font-size:26px;
---calloutMobile-font-size:16px;
+  /*PARAGRAPH*/
+  --bodyDesktop-font-size: 28px;
+  --bodyMobile-font-size: 16px;
 
---subheadDesktop-font-size:24px;
---subheadMobile-font-size:15px;
+  --calloutDesktop-font-size: 26px;
+  --calloutMobile-font-size: 16px;
 
---footnoteDesktop-font-size:22px;
---footnoteMobile-font-size:13px;
+  --subheadDesktop-font-size: 24px;
+  --subheadMobile-font-size: 15px;
 
---captionDesktop-font-size:17px;
---captionMobile-font-size:12px;
+  --footnoteDesktop-font-size: 22px;
+  --footnoteMobile-font-size: 13px;
 
---overlineDesktop-font-size:14px;
---overlineMobile-font-size:10px;
+  --captionDesktop-font-size: 17px;
+  --captionMobile-font-size: 12px;
 
+  --overlineDesktop-font-size: 14px;
+  --overlineMobile-font-size: 10px;
 
- /*Colors*/
+  /*Colors*/
 
- --color-primary: #16c5B4;
- --primary-1: #CBF9F5;
- --primary-2: #96F3EA;
- --primary-3: #62EDE0;
- --primary-400: #1AE5D2;
- --primary-5: #13AC9E;
- --primary-6: #0E7B71;
- --primary-7: #0B625A;
+  --color-primary: #16c5b4;
+  --primary-1: #cbf9f5;
+  --primary-2: #96f3ea;
+  --primary-3: #62ede0;
+  --primary-400: #1ae5d2;
+  --primary-5: #13ac9e;
+  --primary-6: #0e7b71;
+  --primary-7: #0b625a;
 
- --color-secondary: #21D0FF;
- --secondary-1: #DAF7FF;
- --secondary-2: #A6ECFF;
- --secondary-3: #90E7FF;
- --secondary-4: #6BE0FF;
- --secondary-5: #3DD6FF;
- --secondary-6: #00AAD8;
- --secondary-7: #007290;
+  --color-secondary: #21d0ff;
+  --secondary-1: #daf7ff;
+  --secondary-2: #a6ecff;
+  --secondary-3: #90e7ff;
+  --secondary-4: #6be0ff;
+  --secondary-5: #3dd6ff;
+  --secondary-6: #00aad8;
+  --secondary-7: #007290;
 
- --color-neutral: #121212;
- --neutral-1: #FFFFFF;
- --neutral-300: #EAEAEA;
- --neutral-3: #CFCFD5;
- --neutral-4: #9F9FAB;
- --neutral-5: #626270;
- --neutral-700: #36363E;
+  --color-neutral: #121212;
+  --neutral-1: #ffffff;
+  --neutral-300: #eaeaea;
+  --neutral-400: #cfcfd5;
+  --neutral-4: #9f9fab;
+  --neutral-5: #626270;
+  --neutral-700: #36363e;
 
- --color-success: #30DB5B;
+  --color-white-text: #fafafa;
+  --color-background-degradent: #ffffff;
+  --color-success: #30db5b;
 
- --color-error: #FC0019;
+  --color-error: #fc0019;
 
- 
- --left-side: 0%;
- --right-side: 0%;
-
+  --left-side: 0%;
+  --right-side: 0%;
 }
-*{
+* {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-html{
-  background-color: #1C1C20;
+html {
+  background-color: #1c1c20;
+  color: var(--neutral-1);
+  margin: 0;
+  padding: 0;
 }
 
-body{
+body {
   font-family: var(--font-regular);
 }
 
 /* CONTAINER  */
 .container {
   width: 100%;
-  max-width: 1200px; 
-  margin: 1rem auto 0;
-  padding: 0 1rem; 
+  margin: 0 auto;
+  box-sizing: border-box;
 }
-
 
 @media (min-width: 640px) {
   .container {

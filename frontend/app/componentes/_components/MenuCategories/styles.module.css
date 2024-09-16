@@ -1,0 +1,62 @@
+.menu__title {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  color: hsla(227, 13%, 57%, 1);
+  height: 62px;
+}
+
+.menu__item--default {
+  color: hsla(174, 80%, 43%, 1);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.menu__item {
+  list-style: none;
+  font-size: 1rem;
+}
+
+.menu__item--active {
+  color: hsla(174, 80%, 43%, 1);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.menu__button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  color: hsla(0, 0%, 80%, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.menu__icon {
+  width: 20px;
+  height: 20px;
+}
+.menu__ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0 30px;
+  font-size: 14px;
+  color: hsla(0, 0%, 80%, 1);
+}
+
+.menu__item:hover {
+  color: hsla(174, 80%, 43%, 1);
+  cursor: pointer;
+}
