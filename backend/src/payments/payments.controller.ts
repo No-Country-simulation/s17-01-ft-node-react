@@ -21,35 +21,35 @@ export class PaymentsController {
 
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   findAll() {
     return this.paymentsService.findAll();
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   findOne(@Param('id') id: string) {
     return this.paymentsService.findOne(+id);
   }
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin', 'uploader')
+  @Roles('ADMIN', 'UPLOADER')
   create(@Body() createPaymentDto: CreatePaymentDto) {
     return this.paymentsService.create(createPaymentDto);
   }
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   update(@Param('id') id: string, @Body() updatePaymentDto: UpdatePaymentDto) {
     return this.paymentsService.update(+id, updatePaymentDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   remove(@Param('id') id: string) {
     return this.paymentsService.remove(+id);
   }

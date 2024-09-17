@@ -10,6 +10,7 @@ import {
   Req,
   UseInterceptors,
   UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UserService } from './user.service';
@@ -21,6 +22,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ImagesService } from 'src/images/images.service';
+import { User } from './entities/user.entity';
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
@@ -48,6 +50,29 @@ export class UserController {
     private readonly imagesService: ImagesService,
   ) {}
 
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
+  @Get('subscription')
+  @UseGuards(JwtAuthGuard)
+  async userSubscription(@Req() req) {
+    const userId = req.user.id;
+    const parsedUserId = parseInt(userId, 10);
+    if (isNaN(parsedUserId)) {
+      throw new BadRequestException('Invalid user ID');
+    }
+    return await this.userService.findUserSubscription(parsedUserId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('components')
+  async userComponents(@Req() req) {
+    const userId = req.user.id;
+    return await this.userService.findUserComponents(userId);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   userProfile(@Req() req) {
@@ -65,12 +90,6 @@ export class UserController {
     return await this.userService.findUserMyComponents(userId);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('components')
-  async userComponents(@Req() req) {
-    const userId = req.user.id;
-    return await this.userService.findUserComponents(userId);
-  }
 
   @UseGuards(JwtAuthGuard)
   @Get('payments')
@@ -87,17 +106,21 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('subscription')
-  async userSubscription(@Req() req) {
-    const userId = req.user.id;
-    return await this.userService.findUserSubscription(userId);
-  }
-
-  @UseGuards(JwtAuthGuard)
   @Post('upload-avatar')
   @UseInterceptors(FileInterceptor('file', { storage }))
   async uploadAvatar(@Req() req, @UploadedFile() file: Express.Multer.File) {
     const userId = req.user.id;
     return await this.userService.updateAvatar(userId, file.path);
+  }
+
+  @Get(':id')
+  @UseGuards(JwtAuthGuard)
+  findOne(@Param('id') id: string): Promise<Partial<User>> {
+    return this.userService.findOneById(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.userService.update(+id, updateUserDto);
   }
 }

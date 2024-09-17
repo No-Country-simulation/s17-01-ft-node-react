@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -36,12 +36,15 @@ export class UserService {
     }
   }
 
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<Partial<User>[]> {
     const users = await this.userRepository.find();
     if (users.length === 0) {
       throw new NotFoundException('No users found');
     }
-    return users;
+    return users.map((user) => {
+      const { password, ...userWithoutPassword } = user;
+      return userWithoutPassword;
+    });
   }
 
   async findOneByEmail(email: string): Promise<User> {
@@ -53,11 +56,15 @@ export class UserService {
   }
 
   async findOneById(id: number): Promise<User> {
+    if (isNaN(id)) {
+      throw new BadRequestException(`Invalid user ID1: ${id}`);
+    }
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
-    return user;
+    const { password, ...userWithoutPassword } = user;  
+    return userWithoutPassword as User;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
@@ -151,14 +158,19 @@ export class UserService {
   async findUserSubscription(
     id: number,
   ): Promise<{ status: string; message: string; payload: any }> {
+    if (!id) {
+      throw new BadRequestException('Invalid user ID');
+    }
     const user = await this.userRepository.findOne({
       where: { id },
       relations: ['subscription'],
     });
     if (!user.subscription) {
-      throw new NotFoundException(
-        `The user does not have an active subscription.`,
-      );
+      return {
+        status: 'failure',
+        message: 'User does not have an active subscription.',
+        payload: null,
+      };
     }
     return {
       status: 'success',
