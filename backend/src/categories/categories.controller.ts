@@ -10,10 +10,10 @@ import { Roles } from 'src/auth/decorators/roles.decorator';
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
-  // Solo un usuario con rol 'admin' puede crear categorías
+  // Solo un usuario con rol 'ADMIN' puede crear categorías
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.categoriesService.create(createCategoryDto);
   }
@@ -28,18 +28,18 @@ export class CategoriesController {
     return this.categoriesService.findOne(+id);
   }
 
-  // Solo un usuario con rol 'admin' puede actualizar categorías
+  // Solo un usuario con rol 'ADMIN' puede actualizar categorías
   @Patch(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
     return this.categoriesService.update(+id, updateCategoryDto);
   }
 
-  // Solo un usuario con rol 'admin' puede eliminar categorías
+  // Solo un usuario con rol 'ADMIN' puede eliminar categorías
   @Delete(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(+id);
   }
