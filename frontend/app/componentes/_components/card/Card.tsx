@@ -2,12 +2,13 @@
 import { StarIcon, UsersIcon } from "lucide-react";
 import styles from "./styles.module.css";
 import { Component } from "@/lib/types/api/components.type";
+import Link from "next/link";
 export interface CardProps {
   component: Component;
 }
 export default function Card({ component }: CardProps) {
   return (
-    <div className={styles["card"]}>
+    <div className={styles["card"]} onClick={() => window.location.href = `/componentes/${component.id}`}>
       <img
         className={styles["card__image"]}
         src={component.image}
@@ -28,6 +29,7 @@ export default function Card({ component }: CardProps) {
             <span className={styles["card__stat-text"]}>
               {component.rating}({component.downloads})
             </span>
+            <Link href={`/componentes/${component.id}`}>Ver</Link>
           </div>
         </div>
       </div>

@@ -79,7 +79,7 @@ export default function PaginatedCardList() {
 
       <div className={styles["section__container"]}>
         {paginatedItems.map((component) => (
-          <Card key={component.id} component={component} />
+          <Card key={component.id} component={component}  />
         ))}
       </div>
 
