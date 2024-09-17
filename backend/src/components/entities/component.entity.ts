@@ -19,7 +19,7 @@ export class Component {
   @Column()
   name: string;
 
-  @ManyToOne(() => User, (user) => user.myComponents, { eager: true })
+  @ManyToOne(() => User, (user) => user.myComponents)
   @JoinColumn({ name: 'uploader_id', referencedColumnName: 'id' })
   uploader: User;
 

@@ -12,7 +12,7 @@ import { Plan } from 'src/plans/entities/plan.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Component, User, Category, Plan]),
+    TypeOrmModule.forFeature([Component, User, Category, Plan]), UserModule
   ],
   controllers: [ComponentsController],
   providers: [ComponentsService],
