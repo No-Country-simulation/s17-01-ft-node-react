@@ -1,0 +1,35 @@
+.stepsContainer {
+    padding: 20px;
+    color: black;
+  }
+  
+  .stepContent {
+    margin-bottom: 20px;
+    color: black;
+  }
+  
+  .nextButton, .prevButton, .shareButton {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    background-color: #0070f3;
+    cursor: pointer;
+
+  }
+  
+  .prevButton {
+    background-color: #666;
+  }
+  
+  .inputFile {
+    margin: 10px 0;
+    color: black;
+  }
+  
+  .label {
+    display: block;
+    margin: 10px 0;
+    color: black;
+  }
+  

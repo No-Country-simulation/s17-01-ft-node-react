@@ -12,7 +12,7 @@ export class ComponentsController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin', 'uploader') // Por ejemplo, solo los usuarios con estos roles pueden crear componentes
+  @Roles('admin', 'UPLOADER') // Por ejemplo, solo los usuarios con estos roles pueden crear componentes
   create(@Body() createComponentDto: CreateComponentDto) {
     return this.componentsService.create(createComponentDto);
   }

@@ -10,7 +10,7 @@ interface UserState {
 export const useUserStore = create<UserState>()(
   devtools(
     (set) => ({
-      user: null,
+      user: JSON.parse(localStorage.getItem("user") || "null"),
       isAuthenticated: false,
       setUser: (user,) => {
         set({user});
