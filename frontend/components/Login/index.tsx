@@ -10,15 +10,13 @@ import { useForm } from "@/hooks/useForm";
 import { login } from "@/lib/axios/api/auth";
 import { useUserStore } from "@/store/userStore";
 import { useRouter } from "next/navigation";
-// import { Loading } from "../loading";
-
 
 export function Login() {
-  const router = useRouter()
+  const router = useRouter();
   const { form, setForm, missing, setMissing, error, setError } = useForm();
   const [disabled, setDisabled] = useState<boolean>(false);
 
-  const {setUser,setToken} = useUserStore();
+  const { setUser, setToken } = useUserStore();
 
   const handleChange = (field: keyof typeof form, value: string) => {
     setForm({
@@ -58,25 +56,31 @@ export function Login() {
         const { user, token } = response.payload;
         setUser(user);
         setToken(token);
-        router.push('http://localhost:3000/componentes')
+        router.push("http://localhost:3000/componentes");
       }
       setDisabled(false);
     } catch (error: any) {
-
       if (error.message === "Network Error") {
-
-        setError({ ...error, password: "Error de red, intente de nuevo más tarde." })
+        setError({
+          ...error,
+          password: "Error de red, intente de nuevo más tarde.",
+        });
       } else {
-        const dataError = error.response.data
+        const dataError = error.response.data;
         if (dataError.message.includes("User with email")) {
-          setError({ ...error, email: "Correo no registrado" })
-        } else if (dataError.message.includes("The user could not be validated")) {
+          setError({ ...error, email: "Correo no registrado" });
+        } else if (
+          dataError.message.includes("The user could not be validated")
+        ) {
           setError({ ...error, password: "Contraseña incorrecta." });
         } else {
-          setError({ ...error, email: "Error al iniciar sesión. Inténtelo de nuevo." });
+          setError({
+            ...error,
+            email: "Error al iniciar sesión. Inténtelo de nuevo.",
+          });
         }
       }
-      console.log("response error:", error)
+      console.log("response error:", error);
 
       setDisabled(false);
     }
@@ -100,7 +104,11 @@ export function Login() {
           <p className={styles.subtitle}>Nos alegra volver a verte</p>
         </div>
 
-        <form className={styles.form} onSubmit={handleLogin} onInvalid={handleInvalid}>
+        <form
+          className={styles.form}
+          onSubmit={handleLogin}
+          onInvalid={handleInvalid}
+        >
           <Inputs
             label="Correo electronico"
             name="email"
