@@ -11,5 +11,6 @@ import { Plan } from 'src/plans/entities/plan.entity';
   imports: [TypeOrmModule.forFeature([Payment, User, Component, Plan])],
   controllers: [PaymentsController],
   providers: [PaymentsService],
+  exports: [PaymentsService]
 })
 export class PaymentsModule {}
