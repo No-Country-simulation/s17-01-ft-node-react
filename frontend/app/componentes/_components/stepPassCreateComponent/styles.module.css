@@ -1,47 +1,9 @@
 .stepsContainer {
-  border: 1px solid rgb(129, 111, 111);
-    color: black;
     background-color:#222;;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   }
-  
-  .stepContent {
-    color: black;
-  }
-  .stepTitle{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border: var(--neutral-400) 1px solid;
-  }
-  .closeButton {
-    border: none;
-    background-color: none;
-  }
-  .nextButton, .prevButton, .shareButton {
-    margin: 10px;
-    padding: 10px 20px;
-    border: none;
-    color: #fff;
-    background-color: #0070f3;
-    cursor: pointer;
-
-  }
-  
-  .prevButton {
-    background-color: #666;
-  }
-  
-  .inputFile {
-    margin: 10px 0;
-    color: black;
-  }
-  
-  .label {
-    display: block;
-    margin: 10px 0;
-    color: black;
-  }
+   
   .terms{
     margin: 10px 0;
     color: black;

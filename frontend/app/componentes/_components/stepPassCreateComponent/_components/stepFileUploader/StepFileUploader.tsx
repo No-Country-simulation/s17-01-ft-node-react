@@ -16,12 +16,9 @@ export const StepFileUploader: React.FC<StepFileUploaderProps> = ({ onFilesUploa
     setFiles(acceptedFiles);
     onFilesUploaded(acceptedFiles);
   };
-const onCloseModal = () => {
-  
-}
+
   return (
     <div className={style.container}>
-      {/* <StepHeader title="Seleccionar Archivos" handleClick={() => {onCloseModal}} /> */}
       <Dropzone onDrop={onDrop}>
         {({ getRootProps, getInputProps }) => (
           <section className={style.containerDrop}>
@@ -39,13 +36,3 @@ const onCloseModal = () => {
     </div>
   );
 };
-
-/*  <p>Arrastra y suelta tus archivos</p>
-        <p>Tus componentes seran privados hasta q los publiques</p>
-        <button className={style.button}>Seleccionar archivos</button>
-        <input
-          id="file-input"
-          type="file"
-          className={style.visuallyHidden}
-          aria-label="Seleccionar archivo para subir"
-        /> */

@@ -1,9 +1,30 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border: none;
-    border-bottom: var(--neutral-400) 2px solid;
-    margin-bottom: 1rem;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: none;
+  border-bottom: var(--neutral-700) 2px solid;
+  margin-bottom: 1rem;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.closeButton {
+  border: none;
+  background-color: transparent;
+  padding: .5rem;
+  border-radius: 50%;
+  color: var(--neutral-700);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  background-color: #fff;
 }

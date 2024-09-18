@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Step2.module.css";
-import { CircleCheckIcon, Layers } from "lucide-react";
-import { Peace } from "react-bootstrap-icons";
+import { CircleCheckIcon, HelpCircle } from "lucide-react";
 
 interface Step2Props {
   files: File[];
+  onUploadComplete: () => void;
 }
 
 interface Progress {
@@ -16,13 +16,13 @@ const getIconForFileType = (fileName: string) => {
 
   switch (ext) {
     case "tsx":
-      return (
-        <img src="/reactIcon.svg" alt="React" className={styles.fileIcon} />
-      );
+      return <img src="/reactIcon.svg" alt="React" className={styles.fileIcon} />;
     case "css":
-      return <Peace />;
+      return <img src="/cssIcon.svg" alt="css" className={styles.fileIcon} />;
+    case "md":
+      return <img src="/readmeIcon.svg" alt="markdown" className={styles.fileIcon} />;
     default:
-      return <Layers />;
+      return <HelpCircle className={styles.fileIcon} />;
   }
 };
 
@@ -36,9 +36,26 @@ function formatFileSize(sizeInBytes: number) {
   }
 }
 
-const Step2: React.FC<Step2Props> = ({ files }) => {
+const Step2: React.FC<Step2Props> = ({ files, onUploadComplete }) => {
   const [progress, setProgress] = useState<Progress>({});
-  const [uploadComplete, setUploadComplete] = useState<boolean>(false);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (uploading) {
+      uploadAllFiles();
+    }
+  }, [uploading]);
+
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => {
+        onUploadComplete();
+      }, 2000); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess, onUploadComplete]);
 
   const simulateUpload = (file: File, callback: () => void) => {
     let progressValue = 0;
@@ -61,15 +78,11 @@ const Step2: React.FC<Step2Props> = ({ files }) => {
       simulateUpload(file, () => {
         filesToUpload -= 1;
         if (filesToUpload === 0) {
-          setUploadComplete(true);
+          setShowSuccess(true); 
+          setUploading(false); 
         }
       });
     });
-  };
-
-  const handleUpload = () => {
-    setUploadComplete(false);
-    uploadAllFiles();
   };
 
   return (
@@ -96,17 +109,27 @@ const Step2: React.FC<Step2Props> = ({ files }) => {
       ) : (
         <p>No files uploaded yet.</p>
       )}
-      {uploadComplete && (
+      {showSuccess && (
         <div className={styles.boxSuccesMessage}>
-          <p className={styles.successMessageStrong}>¡Subida exitosa! <CircleCheckIcon className={styles.successIcon}/></p>
-          <p className={styles.successMessage}>total de archivos requeridos completos</p>
+          <p className={styles.successMessageStrong}>
+            ¡Subida exitosa! <CircleCheckIcon className={styles.successIcon} />
+          </p>
+          <p className={styles.successMessage}>
+            total de archivos requeridos completos
+          </p>
         </div>
       )}
-      {files.length > 0 && (
-        <button className={styles.uploadButton} onClick={handleUpload}>
-          Comenzar
-        </button>
-      )}
+      <button
+        className={styles.uploadButton}
+        onClick={() => {
+          if (!uploading && !showSuccess) {
+            setUploading(true);
+          }
+        }}
+        disabled={uploading} 
+      >
+        Comenzar
+      </button>
     </div>
   );
 };

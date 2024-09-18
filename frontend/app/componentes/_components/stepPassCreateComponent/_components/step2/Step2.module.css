@@ -1,7 +1,7 @@
-/* Step2.module.css */
 .fileList {
     display: flex;
     flex-direction: column;
+    padding: 1rem;
   }
   
   .fileItem {
@@ -13,9 +13,7 @@
     padding: .5rem;
   }
   
-  .fileIcon {
-    border: 1px solid red;
-    
+  .fileIcon {   
     margin-right: 10px;
   }
   
@@ -24,7 +22,6 @@
     color: #fff;
     display: flex;
     flex-direction: column;
-    border: 1px solid green;
   }
   /* sssss */
   .progressBar {
@@ -55,8 +52,8 @@
     
   }
   .fileIcon{
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
   }
   .boxSuccesMessage {
     display: flex;

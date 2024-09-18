@@ -57,7 +57,9 @@ export default function PaginatedCardList() {
   if (error) return <div>Error</div>;
 
   const paginatedItems = getPaginatedItems();
-
+    const oncloseModal = () => {
+      setIsModalOpen(false);
+    }
   return (
     <>
     <section className={styles["section__cards"]}>
@@ -95,8 +97,8 @@ export default function PaginatedCardList() {
         />
       </div>
     </section>
-    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <StepsComponent></StepsComponent>
+    <Modal isOpen={isModalOpen} >
+        <StepsComponent oncloseModal={oncloseModal}></StepsComponent>
         {/* <button onClick={() => setIsModalOpen(false)}>Cerrar</button> */}
       </Modal>
     </>

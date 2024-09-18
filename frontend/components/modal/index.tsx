@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 
 interface ModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   children: React.ReactNode;
 }
 

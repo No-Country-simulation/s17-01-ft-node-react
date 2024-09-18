@@ -1,4 +1,3 @@
-/* Estilos para el overlay del modal */
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -9,31 +8,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: auto; /* Asegura que el overlay sea interactivo */
-    z-index: 1000; /* Asegura que el overlay esté sobre todo lo demás */
+    pointer-events: auto; 
+    z-index: 1000; 
   }
-  
-  /* Estilos para el contenido del modal */
+
   .modalContent {
-    background: #fff;
+    background-color: none;
     border-radius: 8px;
     max-width: 700px;
     width: 100%;
     position: relative;
-    z-index: 1001; /* Asegura que el contenido del modal esté sobre el overlay */
+    z-index: 1001; 
   }
   
-  /* Clase agregada al body cuando el modal está abierto */
+
   .modalOpen {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: hidden; /* Asegura que el contenido detrás del modal no sea desplazable */
+    overflow: hidden; 
   }
   
-  /* Para mantener el scroll visible pero no interactivo */
+ 
   .modalOpen::before {
     content: "";
     position: absolute;
@@ -41,7 +39,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.1); /* Opacidad para simular un overlay sutil */
-    pointer-events: none; /* Hace que este pseudo-elemento no bloquee el scroll, solo el contenido detrás */
+    background: rgba(0, 0, 0, 0.1); 
+    pointer-events: none; 
   }
   
