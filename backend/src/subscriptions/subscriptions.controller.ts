@@ -20,7 +20,7 @@ export class SubscriptionsController {
   constructor(private readonly subscriptionsService: SubscriptionsService) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin', 'user')
+  @Roles('ADMIN', 'USER')
   @Post()
   create(@Body() createSubscriptionDto: CreateSubscriptionDto) {
     return this.subscriptionsService.create(createSubscriptionDto);

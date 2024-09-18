@@ -12,7 +12,7 @@ export class PlansController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   create(@Body() createPlanDto: CreatePlanDto) {
     return this.plansService.create(createPlanDto);
   }
@@ -29,14 +29,14 @@ export class PlansController {
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   update(@Param('id') id: string, @Body() updatePlanDto: UpdatePlanDto) {
     return this.plansService.update(+id, updatePlanDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles('ADMIN')
   remove(@Param('id') id: string) {
     return this.plansService.remove(+id);
   }
