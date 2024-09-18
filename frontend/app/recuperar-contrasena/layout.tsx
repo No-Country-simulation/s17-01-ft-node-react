@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import MainLogo from "@/assets/logos/MainLogo";
 
-export default function ({ children }: { children: React.ReactNode }) {
+export default  function LayoutReenviarMessage ({ children }: { children: React.ReactNode }) {
     return (
         <div className={styles.container}>
             <div className={styles.field_login}>
