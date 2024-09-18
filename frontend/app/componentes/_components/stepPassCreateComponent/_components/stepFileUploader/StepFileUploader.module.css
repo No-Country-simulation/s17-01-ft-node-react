@@ -1,0 +1,52 @@
+.containerDrop {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: none;
+    border: var(--neutral-400) 1px solid;
+    border-style: dashed;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.button{
+    margin-top: 1rem;
+    background-color: var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: var(--neutral-700);
+    border: none;
+}
+.icon{
+    width: 4rem;
+    height: 4rem;
+    margin: 4rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #fff;
+}
+.textStrong{
+    margin-bottom: 0.5rem;
+    color : #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.text{
+    color : #fff;
+    font-size: 1rem;
+}
+
+.terms{
+    text-align: center;
+    padding: 2rem;
+}
+

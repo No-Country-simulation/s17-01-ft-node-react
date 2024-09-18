@@ -1,0 +1,38 @@
+.stepsContainer {
+    background-color:#222;;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+   
+  .terms{
+    margin: 10px 0;
+    color: black;
+    text-align: center;
+  }
+  .terms a{
+    text-decoration: none;
+    color: var(--color-primary);
+}
+.buttonPrev{
+  background-color: #666;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+.buttonPrev:hover {
+  background-color: #555;
+}
+.buttonPrev__disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px 20px;
+  margin-left: 2rem;
+ ;
+}

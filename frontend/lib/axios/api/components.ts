@@ -18,3 +18,8 @@ export const fetchComponents = async (
   const response = await api.get<Component[]>(url);
   return response.data;
 };
+
+export const createComponent = async (data: FormData): Promise<Component> => {
+  const response = await api.post<Component>("/components", data);
+  return response.data;
+}

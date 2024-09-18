@@ -14,6 +14,7 @@ export function Navbar() {
  const isAuthenticated = window.localStorage.getItem("token") || null;
  const handleLogout = () => {
    window.localStorage.removeItem("token");
+   window.localStorage.removeItem("user");
    setUser(null);
   router.push("/");
  }

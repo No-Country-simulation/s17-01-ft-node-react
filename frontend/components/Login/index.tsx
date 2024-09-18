@@ -57,6 +57,7 @@ export function Login() {
       if (response.status === "success") {
         const { user, token } = response.payload;
         localStorage.setItem("token", token);
+        window.localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
         router.push('http://localhost:3000/componentes')
       }
