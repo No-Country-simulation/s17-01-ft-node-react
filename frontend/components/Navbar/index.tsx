@@ -9,12 +9,10 @@ import { useRouter } from "next/navigation";
 export function Navbar() {
   const router = useRouter();
   const { menuRef, underlineRef } = useUnderlineEffect();
-  const {user, setUser} = useUserStore();
+  const {user, setUser,token,isAuthenticated} = useUserStore();
   const userProfilePicture = user?.avatar || "https://randomuser.me/api/portraits/men/1.jpg";
- const isAuthenticated = window.localStorage.getItem("token") || null;
+
  const handleLogout = () => {
-   window.localStorage.removeItem("token");
-   window.localStorage.removeItem("user");
    setUser(null);
   router.push("/");
  }
