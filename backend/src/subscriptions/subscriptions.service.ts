@@ -26,16 +26,16 @@ export class SubscriptionsService {
   async create(
     createSubscriptionDto: CreateSubscriptionDto,
   ): Promise<Subscription> {
-    const { user, plan, quantity } = createSubscriptionDto;
+    const { user, plan } = createSubscriptionDto;
 
-    const foundUser = await this.userRepository.findOneBy({ id: user.id });
+    const foundUser = await this.userRepository.findOneBy({ id: user });
     if (!foundUser) {
-      throw new NotFoundException(`User with ID ${user.id} not found`);
+      throw new NotFoundException(`User with ID ${user} not found`);
     }
 
-    const foundPlan = await this.planRepository.findOneBy({ id: plan.id });
+    const foundPlan = await this.planRepository.findOneBy({ id: plan });
     if (!foundPlan) {
-      throw new NotFoundException(`Plan with ID ${plan.id} not found`);
+      throw new NotFoundException(`Plan with ID ${plan} not found`);
     }
 
     // Verificar si ya existe una suscripción para el mismo usuario y plan
@@ -51,7 +51,7 @@ export class SubscriptionsService {
     const subscription = this.subscriptionRepository.create({
       user: foundUser,
       plan: foundPlan,
-      quantity,
+      quantity: foundPlan.quantity,
       subscriptionDate: new Date(),
       expirationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 días
     });
@@ -69,6 +69,14 @@ export class SubscriptionsService {
       }
       throw error;
     }
+  }
+
+  async findAll(): Promise<Subscription[]> {
+    const subscriptions = await this.subscriptionRepository.find();
+    if (subscriptions.length === 0) {
+      throw new NotFoundException('No subscriptions available');
+    }
+    return subscriptions;
   }
 
   async findOne(id: number): Promise<Subscription> {

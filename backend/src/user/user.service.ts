@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -10,6 +10,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ConfigService } from '@nestjs/config';
 import { v2 as cloudinary } from 'cloudinary';
+import { Component } from 'src/components/entities/component.entity';
 
 @Injectable()
 export class UserService {
@@ -17,6 +18,8 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private configService: ConfigService,
+    @InjectRepository(Component)
+    private componentRepository: Repository<Component>
   ) {
     cloudinary.config({
       cloud_name: this.configService.get<string>('CLOUDINARY_CLOUD_NAME'),
@@ -198,4 +201,35 @@ export class UserService {
       payload: imageUrl,
     };
   }
+
+  async addComponentToUser(userId: number, componentId: number): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['components'],
+    });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
+
+    const component = await this.componentRepository.findOne({
+      where: { id: componentId },
+    });
+    if (!component) {
+      throw new NotFoundException(`Component with ID ${componentId} not found`);
+    }
+
+    // Verificar si el componente ya está asociado con el usuario
+    if (user.components.some(comp => comp.id === componentId)) {
+      throw new HttpException(`Component with ID ${componentId} is already associated with the user`, HttpStatus.BAD_REQUEST);
+    }
+
+    // Agregar el componente al usuario
+    user.components.push(component);
+
+    // Guardar el usuario actualizado
+    return this.userRepository.save(user);
+  }
+
 }
+
+

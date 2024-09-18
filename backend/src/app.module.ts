@@ -12,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { ImagesModule } from './images/images.module';
 import { SeedModule } from './seed/seed.module';
+import { PurchaseModule } from './purchase/puchase.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { SeedModule } from './seed/seed.module';
     CategoriesModule,
     ImagesModule,
     SeedModule,
+    PurchaseModule
   ],
   controllers: [],
   providers: [],
