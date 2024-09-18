@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 // import AsideComponent from "../AsideComponent";
 import { Button } from "@/ui-atoms";
 import { Check, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export interface CardPropDetail {
   component: Component
@@ -12,9 +13,8 @@ export interface CardPropDetail {
 
 // recibir prop
 export default function ComponentDetail({ component }: CardPropDetail) {
-
+const router = useRouter()
   const handleButton = () => {
-
   }
 
   return (
@@ -45,7 +45,7 @@ export default function ComponentDetail({ component }: CardPropDetail) {
       <aside className={styles.aside_container}>
         <div className={styles.price_codeplus}>
           <h2 className={styles.price_title}>Precio <span className={styles.price_titleSpan}>CodePlus</span></h2>
-          <Button type="button" variant="main" onClick={handleButton}>Suscribirse</Button>
+          <Button type="button" variant="main" onClick={()=>router.push(`/code-plus`)}>Suscribirse</Button>
           <ul className={styles.ul_container}>
             <li className={styles.li_container}>
               <Check className={styles.check} />

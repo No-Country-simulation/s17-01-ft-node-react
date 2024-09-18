@@ -16,9 +16,8 @@
   /* Estilos para el contenido del modal */
   .modalContent {
     background: #fff;
-    padding: 20px;
     border-radius: 8px;
-    max-width: 500px;
+    max-width: 700px;
     width: 100%;
     position: relative;
     z-index: 1001; /* Asegura que el contenido del modal esté sobre el overlay */

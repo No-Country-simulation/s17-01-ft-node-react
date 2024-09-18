@@ -96,10 +96,8 @@ export default function PaginatedCardList() {
       </div>
     </section>
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2>Crear Nuevo Componente</h2>
-        {/* Aquí va el formulario o contenido para crear un componente */}
         <StepsComponent></StepsComponent>
-        <button onClick={() => setIsModalOpen(false)}>Cerrar</button>
+        {/* <button onClick={() => setIsModalOpen(false)}>Cerrar</button> */}
       </Modal>
     </>
   );

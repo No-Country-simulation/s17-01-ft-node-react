@@ -1,22 +1,24 @@
+// StepsComponent.tsx
 "use client";
 import React, { useState } from "react";
-import styles from "./styles.module.css"; // Asegúrate de tener estilos para el componente
+import styles from "./styles.module.css";
+import { StepFileUploader } from "./_components/stepFileUploader/StepFileUploader";
+import Step2 from "./_components/step2/Step2";
+import { StepHeader } from "./_components/stepHeader/StepHeader";
+import FileUpload from "./_components/fileUpload/FileUpload";
 
 const StepsComponent: React.FC = () => {
   const [step, setStep] = useState<number>(1);
-  const [structureFile, setStructureFile] = useState<File | null>(null);
-  const [styleFile, setStyleFile] = useState<File | null>(null);
-  const [readmeFile, setReadmeFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, setFile: React.Dispatch<React.SetStateAction<File | null>>) => {
-    if (event.target.files && event.target.files[0]) {
-      setFile(event.target.files[0]);
-    }
+  const handleFilesUploaded = (uploadedFiles: File[]) => {
+    setFiles(uploadedFiles);
+    setStep(2);
   };
 
   const handleNextStep = () => {
     if (step === 1) {
-      if (structureFile && styleFile && readmeFile) {
+      if (files.length > 0) { // Puedes ajustar esta lógica según el número de archivos necesarios
         setStep(2);
       } else {
         alert("Por favor, cargue todos los archivos.");
@@ -39,70 +41,30 @@ const StepsComponent: React.FC = () => {
 
   return (
     <div className={styles.stepsContainer}>
+      <StepHeader title="Cargar Archivos" handleClick={() => {}} />
       {step === 1 && (
-        <div className={styles.stepContent}>
-          <h2>Seleccionar Archivos</h2>
-          <div>
-            <label className={styles.label} htmlFor="structureFile">Archivo de Estructura</label>
-            <input
-              id="structureFile"
-              type="file"
-              className={styles.inputFile}
-              onChange={(e) => handleFileChange(e, setStructureFile)}
-            />
-          </div>
-          <div>
-            <label className={styles.label} htmlFor="styleFile">Archivo de Estilo</label>
-            <input
-              id="styleFile"
-              type="file"
-              className={styles.inputFile}
-              onChange={(e) => handleFileChange(e, setStyleFile)}
-            />
-          </div>
-          <div>
-            <label className={styles.label} htmlFor="readmeFile">Archivo README</label>
-            <input
-              id="readmeFile"
-              type="file"
-              className={styles.inputFile}
-              onChange={(e) => handleFileChange(e, setReadmeFile)}
-            />
-          </div>
-          <button onClick={handleNextStep} className={styles.nextButton}>
-            Comenzar
-          </button>
+        <div>
+          
+        <StepFileUploader onFilesUploaded={handleFilesUploaded} />
         </div>
       )}
-
+      {/* Aquí puedes agregar los componentes para los otros pasos */}
       {step === 2 && (
-        <div className={styles.stepContent}>
-          <h2>Previsualización de Archivos</h2>
-          <ul>
-            {structureFile && <li>Estructura: {structureFile.name}</li>}
-            {styleFile && <li>Estilo: {styleFile.name}</li>}
-            {readmeFile && <li>README: {readmeFile.name}</li>}
-          </ul>
-          <button onClick={handlePreviousStep} className={styles.prevButton}>
-            Anterior
-          </button>
-          <button onClick={handleNextStep} className={styles.nextButton}>
-            Compartir
-          </button>
+        <div>
+          <Step2 files={files} />
+         
         </div>
       )}
-
       {step === 3 && (
-        <div className={styles.stepContent}>
-          <h2>Compartir Archivos</h2>
-          <button onClick={handleShare} className={styles.shareButton}>
-            Compartir
-          </button>
-          <button onClick={handlePreviousStep} className={styles.prevButton}>
-            Anterior
-          </button>
+        <div>
+          <p>Step 3</p>
         </div>
       )}
+       <button onClick={handlePreviousStep} disabled={step === 1} className={`${step === 1 ? styles.buttonPrev__disabled : styles.buttonPrev}`}>Anterior</button>
+      <p className={styles.terms}>
+        Si envías tus componentes a CodePieces, aceptas los{" "}
+        <a href="#">Términos y Condiciones</a> de la Comunidad de CodePieces
+      </p>
     </div>
   );
 };
