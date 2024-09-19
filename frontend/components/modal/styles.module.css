@@ -10,15 +10,19 @@
     justify-content: center;
     pointer-events: auto; 
     z-index: 1000; 
+    width: 100vw;
+    height: 100vh;
   }
 
   .modalContent {
-    background-color: none;
+    background-color: #222;
     border-radius: 8px;
-    max-width: 700px;
+    max-width: 60vw;
     width: 100%;
+    max-height: 90vh;
     position: relative;
     z-index: 1001; 
+    overflow: auto;
   }
   
 

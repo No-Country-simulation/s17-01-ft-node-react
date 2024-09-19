@@ -74,7 +74,7 @@ export class ComponentsController {
     const { styles, structure, readme, ...componentWithoutSensitiveFields } =
       component;
     return {
-      component: componentWithoutSensitiveFields,
+      ...componentWithoutSensitiveFields,
     };
   }
 

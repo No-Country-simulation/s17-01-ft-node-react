@@ -6,24 +6,33 @@ import { ChevronDownIcon, CircleHelpIcon } from "lucide-react";
 import { useUnderlineEffect } from "@/hooks";
 import { useUserStore } from "@/store/userStore";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 export function Navbar() {
   const router = useRouter();
   const { menuRef, underlineRef } = useUnderlineEffect();
-  const {user, setUser,token,isAuthenticated} = useUserStore();
+  const { user, setUser, isAuthenticated } = useUserStore();
   const userProfilePicture = user?.avatar || "https://randomuser.me/api/portraits/men/1.jpg";
+  
+  const [navText, setNavText] = useState("Inicio");
 
- const handleLogout = () => {
-   setUser(null);
-  router.push("/");
- }
+  useEffect(() => {
+    setNavText(isAuthenticated ? "Mi gestión" : "Inicio");
+  }, [isAuthenticated]);
+
+  const handleLogout = () => {
+    setUser(null);
+    router.push("/");
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <img src="/CodePiecesLogo.png" alt="Logo" />
       </div>
       <div className={styles.menu} ref={menuRef}>
-        <Link href={ isAuthenticated ? "/my-management" : "/"} className={styles.navLink}>
-          {isAuthenticated ? "Mi gestión" : "Inicio"}
+        <Link href={isAuthenticated ? "/my-management" : "/"} className={styles.navLink}>
+          {navText}
         </Link>
         <Link href="/componentes" className={styles.navLink}>
           Componentes
@@ -34,17 +43,16 @@ export function Navbar() {
         <Link href="/contacto" className={styles.navLink}>
           Contacto
         </Link>
-        <Link
-          href="/code-plus"
-          className={`${styles.navLink} ${styles.codePlus}`}
-        >
+        <Link href="/code-plus" className={`${styles.navLink} ${styles.codePlus}`}>
           CodePlus
         </Link>
         <span className={styles.underline} ref={underlineRef}></span>
       </div>
       <div className={styles.actions}>
-        {isAuthenticated ? (
-          // Si el usuario está autenticado, muestra la imagen de perfil y el dropdown
+        {isAuthenticated === null ? (
+          // Mostrar un loader o un placeholder mientras se carga la información de autenticación
+          <div className={styles.loadingPlaceholder}>Cargando...</div>
+        ) : isAuthenticated ? (
           <div className={styles.profile}>
             <img
               src={userProfilePicture}
@@ -60,11 +68,12 @@ export function Navbar() {
             <div className={styles.dropdownMenu}>
               <Link href="/perfil">Mi Perfil</Link>
               <Link href="/ajustes">Ajustes</Link>
-              <button onClick={handleLogout} className={styles.logoutButton}>Cerrar Sesión</button>
+              <button onClick={handleLogout} className={styles.logoutButton}>
+                Cerrar Sesión
+              </button>
             </div>
           </div>
         ) : (
-          // Si el usuario no está autenticado, muestra los botones de login
           <>
             <Link href="Auth/login" className={styles.loginButton}>
               Ingresar

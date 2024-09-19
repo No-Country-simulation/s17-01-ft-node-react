@@ -96,6 +96,7 @@ export function useFetch<T>({
         fetchFn()
           .then((result) => {
             if (useLocalState) {
+              console.log("esty cac useLocalState");
               setData(result);
             }
             if (onSuccess) onSuccess(result);
@@ -117,6 +118,7 @@ export function useFetch<T>({
 
   // Retorna el estado basado en si se usa el estado local o no
   if (useLocalState) {
+    console.log("esty cac useLocalState debria devolver esto");
     return { data, isLoading, error } as UseFetchReturnTypeWithLocalState<T>;
   } else {
     return { isLoading, error } as UseFetchReturnTypeWithoutLocalState;

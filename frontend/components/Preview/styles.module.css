@@ -1,7 +1,9 @@
 .container {
   display: flex;
-  flex-direction: row;
   gap: 2.5rem;
+  padding: 1rem;
+
+
 }
 
 .detail_container {
@@ -76,7 +78,7 @@
   width: 100%;
   height: 189px;
   border: none;
-  background-color: #212124;
+  background-color: #9595b9;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,6 +149,12 @@
 
 .image_container {
   display: flex;
+}
+.image_container img {
+  width: 100%;
+  max-width:250px;
+  height: auto;
+  object-fit: cover;
 }
 
 .title_preview {
