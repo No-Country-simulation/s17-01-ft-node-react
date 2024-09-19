@@ -11,5 +11,6 @@ import { PlansModule } from 'src/plans/plans.module';
   imports: [TypeOrmModule.forFeature([Subscription, Plan, User]), PlansModule],
   controllers: [SubscriptionsController],
   providers: [SubscriptionsService],
+  exports: [SubscriptionsService],
 })
 export class SubscriptionsModule {}
