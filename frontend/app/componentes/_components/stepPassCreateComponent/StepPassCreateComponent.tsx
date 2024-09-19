@@ -5,6 +5,7 @@ import { StepFileUploader } from "./_components/stepFileUploader/StepFileUploade
 import Step2 from "./_components/step2/Step2";
 import { StepHeader } from "./_components/stepHeader/StepHeader";
 import useStepPass from "@/hooks/useStepPass";
+import Preview from "@/components/Preview";
 
 
 const StepsComponent = ({ oncloseModal }: { oncloseModal: () => void }) => {
@@ -33,8 +34,8 @@ const StepsComponent = ({ oncloseModal }: { oncloseModal: () => void }) => {
         </div>
       )}
       {step === 3 && (
-        <div>
-          <p>Step 3</p>
+        <div >
+          <Preview />
         </div>
       )}
       <button
@@ -45,7 +46,8 @@ const StepsComponent = ({ oncloseModal }: { oncloseModal: () => void }) => {
         Anterior
       </button>
       <p className={styles.terms}>
-        Si envías tus componentes a CodePieces, aceptas los{" "}
+        Si envías tus componentes a CodePieces, aceptas los
+        {" "}
         <a href="#">Términos y Condiciones</a> de la Comunidad de CodePieces
       </p>
     </div>

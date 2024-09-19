@@ -4,32 +4,28 @@ import ComponentDetail from "@/components/ComponentDetail";
 import { componentById } from "@/lib/axios/api/componentById";
 import { Component } from "@/lib/types/api/components.type";
 import { useComponentStore } from "@/store/componentStore";
+import { de } from "date-fns/locale";
+import { fi } from "date-fns/locale/fi";
 import { useEffect, useState } from "react";
 
 interface Props {
-  detailComponent:Component;
+  detailComponent?:Component;
 }
 
-function DetailComponentClient({detailComponent}:Props) {
-  // const [ detailData, setDetailData ] = useState<Component>()
+function DetailComponentClient() {
+   const [ detailData, setDetailData ] = useState<Component>()
   
-  // const { allComponents } = useComponentStore()
-
-  // const filterComponents = allComponents.filter(component => component.id === 1)
-
-  // useEffect(() => {
-  //   detailComponent().then(response => {
-  //     if(response) {
-  //       setDetailData(response)
-  //     }
-  //   })
-
-  //   // filterComponents.map(component => setDetailData(component))
-  // },[detailData])
-
-  // console.log("respuesta de dataDetail",detailData);
   
-  return (detailComponent && <ComponentDetail component={detailComponent} />)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await componentById(1)
+      setDetailData(data)
+    }
+    fetchData()
+  }, [])
+  console.log("--->",detailData?.name)
+  return ( detailData && <ComponentDetail component={detailData} />)
   
 }
 

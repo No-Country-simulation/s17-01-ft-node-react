@@ -1,4 +1,7 @@
 :root {
+  --sb-track-color: #232e33;
+  --sb-thumb-color: #1c1c1c;
+  --sb-size: 8px;
   /*FONTS*/
   --font-regular: var(--fontRegular);
   --font-medium: var(--fontMedium);
@@ -100,9 +103,36 @@ html {
   padding: 0;
 }
 
-body {
-  font-family: var(--font-regular);
-}
+
+  
+  
+
+  body {
+    font-family: var(--font-regular);
+   
+  }
+  
+  body::-webkit-scrollbar {
+    width: var(--sb-size)
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 8px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 8px;
+    
+  }
+  
+  @supports not selector(::-webkit-scrollbar) {
+    body {
+      scrollbar-color: var(--sb-thumb-color)
+                       var(--sb-track-color);
+    }
+  }
 
 /* CONTAINER  */
 .container {

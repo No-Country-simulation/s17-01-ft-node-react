@@ -1,7 +1,8 @@
 .stepsContainer {
     background-color:#222;;
     border-radius: 1rem;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    height: max-content;
   }
    
   .terms{
@@ -35,4 +36,10 @@
   padding: 10px 20px;
   margin-left: 2rem;
  ;
+}
+.detail_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
 }
